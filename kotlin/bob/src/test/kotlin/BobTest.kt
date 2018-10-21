@@ -1,5 +1,4 @@
 import org.junit.Test
-import org.junit.Ignore
 import kotlin.test.assertEquals
 
 class BobTest {
@@ -127,5 +126,4 @@ class BobTest {
     fun nonQuestionEndingWithWhitespace() {
         assertEquals("Whatever.", Bob.hey("This is a statement ending with whitespace      "))
     }
-
 }

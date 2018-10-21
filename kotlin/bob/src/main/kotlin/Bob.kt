@@ -9,7 +9,7 @@ object Bob {
 }
 
 private fun isSilence(message: String) =
-    message.all({!isLetter(it) && !isDigit(it)})
+    message.all({ !isLetter(it) && !isDigit(it) })
 
 private fun isExclamation(message: String) =
     message.all(::uppercaseOrNotLetter) && message.any(::isLetter)
@@ -21,7 +21,7 @@ private fun isLetter(c: Char) =
     c.toUpperCase() in 'A'..'Z'
 
 private fun isDigit(c: Char) =
-   c in '0'..'9'
+    c in '0'..'9'
 
 private fun isQuestion(message: String) =
     !message.trim().isEmpty() && (message.trim().last() == '?')
