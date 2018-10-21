@@ -1,7 +1,7 @@
 object Bob {
     fun hey(message: String): String =
         when {
-            isExclaimation(message) -> "Whoa, chill out!"
+            isExclamation(message) -> "Whoa, chill out!"
             isQuestion(message) -> "Sure."
             isSilence(message) -> "Fine. Be that way!"
             else -> "Whatever."
@@ -11,7 +11,7 @@ object Bob {
 private fun isSilence(message: String) =
     message.all({!isLetter(it) && !isDigit(it)})
 
-private fun isExclaimation(message: String) =
+private fun isExclamation(message: String) =
     message.all(::uppercaseOrNotLetter) && message.any(::isLetter)
 
 private fun uppercaseOrNotLetter(c: Char) =
