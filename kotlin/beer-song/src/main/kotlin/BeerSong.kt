@@ -1,6 +1,6 @@
 object BeerSong {
     fun verses(first: Int, last: Int): String =
-        verse(first)
+        (first downTo last).map(::verse).joinToString("\n")
 }
 
 private fun verse(count: Int): String =
@@ -14,7 +14,10 @@ private fun line1(count: Int): String =
     "${bottlesOfBeer(count).capitalize()} on the wall, ${bottlesOfBeer(count)}."
 
 private fun line2(count: Int): String =
-    "Take ${pronoun(count)} down and pass it around, ${bottlesOfBeer(count - 1)} on the wall."
+    if (count == 0)
+        "Go to the store and buy some more, 99 bottles of beer on the wall."
+    else
+        "Take ${pronoun(count)} down and pass it around, ${bottlesOfBeer(count - 1)} on the wall."
 
 private fun bottlesOfBeer(count: Int): String {
     val quantity = if (count == 0) "no more" else "$count"
