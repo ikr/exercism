@@ -5,10 +5,16 @@ object BeerSong {
 
 private fun verse(count: Int): String =
     """
-    |${bottlesOfBeer(count).capitalize()} on the wall, ${bottlesOfBeer(count)}.
-    |Take ${pronoun(count)} down and pass it around, ${bottlesOfBeer(count - 1)} on the wall.
+    |${line1(count)}
+    |${line2(count)}
     |
     """.trimMargin()
+
+private fun line1(count: Int): String =
+    "${bottlesOfBeer(count).capitalize()} on the wall, ${bottlesOfBeer(count)}."
+
+private fun line2(count: Int): String =
+    "Take ${pronoun(count)} down and pass it around, ${bottlesOfBeer(count - 1)} on the wall."
 
 private fun bottlesOfBeer(count: Int): String {
     val quantity = if (count == 0) "no more" else "$count"
