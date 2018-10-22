@@ -3,28 +3,24 @@ import org.junit.Test
 import kotlin.test.assertEquals
 
 class BeerSongTest {
-
     @Test
     fun firstGenericVerse() {
         val expected = "99 bottles of beer on the wall, 99 bottles of beer.\nTake one down and pass it around, 98 bottles of beer on the wall.\n"
         assertEquals(expected, BeerSong.verses(99, 99))
     }
 
-    @Ignore
     @Test
     fun lastGenericVerse() {
         val expected = "3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n"
         assertEquals(expected, BeerSong.verses(3, 3))
     }
 
-    @Ignore
     @Test
     fun verse2() {
         val expected = "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
         assertEquals(expected, BeerSong.verses(2, 2))
     }
 
-    @Ignore
     @Test
     fun verse1() {
         val expected = "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n"
