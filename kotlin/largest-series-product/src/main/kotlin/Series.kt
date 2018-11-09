@@ -13,13 +13,14 @@ data class Series(val s: String) {
 }
 
 private fun largestProductOfNonZeroes(ds: List<Int>, length: Int): Int {
-    var result  = product(ds.take(length))
+    var result = product(ds.take(length))
+    var runningProd = result
 
     for (i in length..(ds.size - 1)) {
-        val candidate = (result / (ds[i - length])) * ds[i]
+        runningProd = (runningProd / (ds[i - length])) * ds[i]
 
-        if (candidate > result) {
-            result = candidate
+        if (runningProd > result) {
+            result = runningProd
         }
     }
 

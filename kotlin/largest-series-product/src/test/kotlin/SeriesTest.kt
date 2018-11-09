@@ -23,7 +23,6 @@ class SeriesTest {
         assertEquals(504, Series("0123456789").getLargestProduct(3))
     }
 
-    @Ignore
     @Test
     fun findsTheLargestProductOf3() {
         assertEquals(270, Series("1027839564").getLargestProduct(3))
