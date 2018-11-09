@@ -8,11 +8,13 @@ data class Series(val s: String) {
 
         val subSeqs = s.split("0").filter {it != ""}
         val subSolutions = subSeqs.map {largestProductOfNonZeroes(digits(it), length)}
-        return subSolutions.max() ?: 1
+        return subSolutions.max() ?: if (length == 0) 1 else 0
     }
 }
 
 private fun largestProductOfNonZeroes(ds: List<Int>, length: Int): Int {
+    if (ds.size < length) return 0
+
     var result = product(ds.take(length))
     var runningProd = result
 

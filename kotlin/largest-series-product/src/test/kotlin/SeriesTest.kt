@@ -1,5 +1,4 @@
 import org.junit.Test
-import org.junit.Ignore
 import kotlin.test.assertEquals
 
 class SeriesTest {
@@ -28,25 +27,21 @@ class SeriesTest {
         assertEquals(270, Series("1027839564").getLargestProduct(3))
     }
 
-    @Ignore
     @Test
     fun findsTheLargestProductOf5WithNumbersInOrder() {
         assertEquals(15120, Series("0123456789").getLargestProduct(5))
     }
 
-    @Ignore
     @Test
     fun findsTheLargestProductWithinABigNumber() {
         assertEquals(23520, Series("73167176531330624919225119674426574742355349194934").getLargestProduct(6))
     }
 
-    @Ignore
     @Test
     fun reports0IfAllDigitsAre0() {
         assertEquals(0, Series("0000").getLargestProduct(2))
     }
 
-    @Ignore
     @Test
     fun reports0IfAllSpansInclude0() {
         assertEquals(0, Series("99099").getLargestProduct(3))
