@@ -1,9 +1,6 @@
 class PhoneNumber(s: String) {
     private val s: String
-
-    init {
-        this.s = s
-    }
+    init { this.s = s }
 
     val number: String?
         get() {
