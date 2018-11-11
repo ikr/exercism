@@ -4,7 +4,7 @@ class IsbnVerifier {
         if (!isValidStructure(digitsString)) return false
 
         val ds = digitsString.map(::digit)
-        return ds.zip(10 downTo 1).toList().map(::mul).sum() % 11 == 0
+        return ds.zip(10 downTo 1).map(::mul).sum() % 11 == 0
     }
 }
 
