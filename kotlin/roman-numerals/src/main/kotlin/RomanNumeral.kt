@@ -14,26 +14,26 @@ object RomanNumeral {
 }
 
 fun firstNotExceeding(x: Int): Term {
-    for (i in 0 until atoms.size) {
-        if (atoms[i].value <= x) return atoms[i]
-
-        if (i % 2 == 0) {
-            if ((atoms[i] - atoms[i + 2]).value <= x)
-                return atoms[i] - atoms[i + 2]
-        } else {
-            val candidates = listOf(
+    for (i in 0 until atoms.size - 1) {
+        val candidates = if (i % 2 == 0)
+            listOf(
+                atoms[i],
+                atoms[i] - atoms[i + 2]
+            )
+        else
+            listOf(
                 atoms[i] + atoms[i + 1] + atoms[i + 1] + atoms[i + 1],
                 atoms[i] + atoms[i + 1] + atoms[i + 1],
                 atoms[i] + atoms[i + 1],
+                atoms[i],
                 atoms[i] - atoms[i + 1]
             )
 
-            val result = candidates.find {it.value <= x}
-            if (result != null) return result
-        }
+        val result = candidates.find {it.value <= x}
+        if (result != null) return result
     }
 
-    throw IllegalStateException()
+    return atoms.last()
 }
 
 private val atoms = listOf(
