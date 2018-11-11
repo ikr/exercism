@@ -13,7 +13,7 @@ object RomanNumeral {
     }
 }
 
-fun firstNotExceeding(x: Int): Term {
+private fun firstNotExceeding(x: Int): Term {
     for (i in 0 until atoms.size - 1) {
         val candidates = if (i % 2 == 0)
             listOf(
@@ -46,7 +46,7 @@ private val atoms = listOf(
     Term(1, "I")
 )
 
-data class Term(val value: Int, val literal: String) {
+private data class Term(val value: Int, val literal: String) {
     operator fun plus(other: Term): Term {
         return Term(value + other.value, literal + other.literal)
     }
