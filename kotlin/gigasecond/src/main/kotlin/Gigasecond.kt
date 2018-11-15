@@ -2,13 +2,16 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 class Gigasecond {
-    constructor(origin: LocalDate) {
-    }
-
-    constructor(origin: LocalDateTime) {
-
-    }
-
     val date: LocalDateTime
-        get() = LocalDateTime.MIN
+
+    constructor(originDate: LocalDate) {
+        date = gigaAdd(originDate.atStartOfDay())
+    }
+
+    constructor(originDateTime: LocalDateTime) {
+        date = gigaAdd(originDateTime)
+    }
 }
+
+private fun gigaAdd(t: LocalDateTime) =
+    t.plusSeconds(1_000_000_000)
