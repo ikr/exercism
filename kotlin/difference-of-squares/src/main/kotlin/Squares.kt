@@ -9,9 +9,7 @@ class Squares(n: Int) {
         (1..n).sumBy(Int::square)
 
     fun difference(): Int =
-        (1..n)
-            .flatMap {x -> ((x + 1)..n).map {y -> Pair(x, y)}}
-            .sumBy { 2 * it.first * it.second}
+        squareOfSum() - sumOfSquares()
 }
 
 private fun Int.square(): Int =
