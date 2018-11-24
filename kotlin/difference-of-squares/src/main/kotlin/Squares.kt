@@ -6,7 +6,7 @@ class Squares(n: Int) {
         (n * (n + 1) / 2).square()
 
     fun sumOfSquares(): Int =
-        (1..n).sumBy(Int::square)
+        n * (n + 1) * (2 * n + 1) / 6
 
     fun difference(): Int =
         squareOfSum() - sumOfSquares()
