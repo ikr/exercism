@@ -1,16 +1,17 @@
+import kotlin.math.sqrt
+
 enum class Classification {
     DEFICIENT, PERFECT, ABUNDANT
 }
 
 fun classify(x: Int): Classification {
     require(x > 0)
-
     val s = factors(x).sum()
 
     return when (s) {
-        0 -> Classification.DEFICIENT
+        1 -> Classification.DEFICIENT
 
-        in 1..x -> if (s == x)
+        in 2..x -> if (s == x)
             Classification.PERFECT
         else
             Classification.DEFICIENT
@@ -19,5 +20,18 @@ fun classify(x: Int): Classification {
     }
 }
 
-private fun factors(x: Int): List<Int> =
-    (1 until x).filter { x % it == 0 }
+private fun factors(x: Int): List<Int> {
+    val result = mutableListOf(1)
+
+    (2..x.sqrt()).forEach {
+        if (x % it == 0) {
+            result.add(it)
+            if (x / it != it) result.add(x / it)
+        }
+    }
+
+    return result
+}
+
+private fun Int.sqrt() =
+    sqrt(this.toDouble()).toInt()
