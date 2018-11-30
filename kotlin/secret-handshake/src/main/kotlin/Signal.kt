@@ -1,7 +1,7 @@
 object HandshakeCalculator {
     fun calculateHandshake(x: Int): List<Signal> {
         val binWithPrefix = x.toString(2).padStart(5, '0')
-        val reverse = binWithPrefix[0] == '1'
+        val doReverse = binWithPrefix[0] == '1'
         val bin = binWithPrefix.substring(1)
 
         val result = bin
@@ -16,7 +16,7 @@ object HandshakeCalculator {
                 }
             )
 
-        return if (reverse)
+        return if (doReverse)
             result.reversed()
         else
             result
