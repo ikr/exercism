@@ -1,5 +1,3 @@
-import kotlin.math.min
-
 object Sieve {
     fun primesUpTo(limit: Int): List<Int> {
         val isIndexPrime = Array(limit + 1) { if (it < 2) false else true }
