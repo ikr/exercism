@@ -1,6 +1,6 @@
 object Sieve {
     fun primesUpTo(limit: Int): List<Int> {
-        val isIndexPrime = Array(limit + 1) { if (it < 2) false else true }
+        val isIndexPrime = Array(limit + 1) { it >= 2 }
         var cursor = 2
 
         while (cursor <= limit) {
