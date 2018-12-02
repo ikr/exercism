@@ -14,6 +14,6 @@ class RaindropConverter {
             result += "Plong";
         }
 
-        return result == "" ? String.valueOf(number) : result;
+        return result.isEmpty() ? String.valueOf(number) : result;
     }
 }
