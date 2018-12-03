@@ -1,47 +1,57 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
 class PigLatinTranslator {
     String translate(String s) {
-        String p = fullConsonantPrefix(s);
-        return s.substring(p.length()) + p + "ay";
+        return Arrays
+            .stream(s.split(" "))
+            .map(PigLatinTranslator::translateWord)
+            .collect(Collectors.joining(" "));
     }
 
-    private static String fullConsonantPrefix(final String s) {
-        String result = "";
+    private static String translateWord(String s) {
+        if (matchPrefix(leadingVowels, s).length() > 0) {
+            return s + "ay";
+        }
+
+        String prefix = "";
         String suffix = s;
 
         while (true) {
-            String prefix = consonantPrefix(suffix);
-            if (prefix.equals("")) break;
+            String p = matchPrefix(prefix.equals("") ? leadingConsonants : consonants,
+                                   suffix);
 
-            result += prefix;
-            suffix = suffix.substring(prefix.length());
+            if (p.length() == 0) break;
+
+            prefix += p;
+            suffix = suffix.substring(p.length());
         }
 
-        return result.equals("xr") || result.startsWith("yt") ? "" : result;
+        return suffix + prefix + "ay";
     }
 
-    private static String consonantPrefix(final String s) {
-        for (Consonant c : Consonant.values()) {
-            if (s.indexOf(c.value()) == 0) {
-                return c.value();
-            }
+    private static final List<String> leadingVowels;
+    private static final List<String> leadingConsonants;
+    private static final List<String> consonants;
+
+    static {
+        leadingVowels = Arrays
+            .asList("xr", "yt", "a", "e", "i", "o", "u");
+
+        consonants = Arrays
+            .asList("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n",
+                    "p", "qu", "q", "r", "s", "t", "v", "w", "x", "z");
+
+        leadingConsonants = new ArrayList<>();
+        leadingConsonants.add("y");
+        leadingConsonants.addAll(consonants);
+    }
+
+    private static String matchPrefix(List<String> oneOf, String s) {
+        for (String p : oneOf) {
+            if (s.indexOf(p) == 0) return p;
         }
 
         return "";
-    }
-}
-
-enum Consonant {
-    B("b"), C("c"), D("d"), F("f"), G("g"), H("h"), K("k"),
-    L("l"), M("m"), N("n"), P("p"), QU("qu"), Q("q"), R("r"), S("s"),
-    T("t"), V("v"), W("w"), X("x"), Y("y"), Z("z");
-
-    private final String value;
-
-    Consonant(String value) {
-        this.value = value;
-    }
-
-    public String value() {
-        return this.value;
     }
 }
