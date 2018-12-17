@@ -1,26 +1,13 @@
 object HandshakeCalculator {
-    fun calculateHandshake(x: Int): List<Signal> {
-        val binWithPrefix = x.toString(2).padStart(5, '0')
-        val doReverse = (x and (1 shl 4)) != 0
-        val bin = binWithPrefix.substring(1)
-
-        val result = bin
-            .toList()
-            .zip(Signal.values().reversed())
-            .fold(
-                mutableListOf<Signal>(),
-                {agg, p ->
-                    val (digit, signal) = p
-                    if (digit == '1') agg.add(0, signal)
-                    agg
-                }
-            )
-
-        return if (doReverse)
-            result.reversed()
-        else
-            result
-    }
+    fun calculateHandshake(x: Int): List<Signal> =
+        Signal.values()
+            .filter({ it.value and x != 0 })
+            .let({ if ((x and 0b10000) != 0) it.reversed() else it })
 }
 
-enum class Signal { WINK, DOUBLE_BLINK, CLOSE_YOUR_EYES, JUMP }
+enum class Signal(val value: Int) {
+    WINK(0b1),
+    DOUBLE_BLINK(0b10),
+    CLOSE_YOUR_EYES(0b100),
+    JUMP(0b1000)
+}
