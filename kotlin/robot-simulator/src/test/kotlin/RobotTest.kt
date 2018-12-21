@@ -1,4 +1,3 @@
-import org.junit.Ignore
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -11,7 +10,6 @@ class RobotTest {
         assertEquals(Orientation.NORTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testRobotCanBeCreatedWithCustomPositionAndOrientation() {
         val robot = Robot(GridPosition(x = -1, y = -1), Orientation.SOUTH)
@@ -20,7 +18,6 @@ class RobotTest {
         assertEquals(Orientation.SOUTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningRightCorrectlyChangesOrientationFromNorthToEast() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.NORTH)
@@ -30,7 +27,6 @@ class RobotTest {
         assertEquals(Orientation.EAST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningRightCorrectlyChangesOrientationFromEastToSouth() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.EAST)
@@ -40,7 +36,6 @@ class RobotTest {
         assertEquals(Orientation.SOUTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningRightCorrectlyChangesOrientationFromSouthToWest() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.SOUTH)
@@ -50,7 +45,6 @@ class RobotTest {
         assertEquals(Orientation.WEST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningRightCorrectlyChangesOrientationFromWestToNorth() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.WEST)
@@ -60,7 +54,6 @@ class RobotTest {
         assertEquals(Orientation.NORTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningLeftCorrectlyChangesOrientationFromNorthToWest() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.NORTH)
@@ -70,7 +63,6 @@ class RobotTest {
         assertEquals(Orientation.WEST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningLeftCorrectlyChangesOrientationFromWestToSouth() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.WEST)
@@ -80,7 +72,6 @@ class RobotTest {
         assertEquals(Orientation.SOUTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningLeftCorrectlyChangesOrientationFromSouthToEast() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.SOUTH)
@@ -90,7 +81,6 @@ class RobotTest {
         assertEquals(Orientation.EAST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testTurningLeftCorrectlyChangesOrientationFromEastToNorth() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.EAST)
@@ -100,7 +90,6 @@ class RobotTest {
         assertEquals(Orientation.NORTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testAdvancingDoesNotChangeOrientation() {
         val initialOrientation = Orientation.NORTH
@@ -111,7 +100,6 @@ class RobotTest {
         assertEquals(initialOrientation, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testAdvancingWhenFacingNorthIncreasesYCoordinateByOne() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.NORTH)
@@ -121,7 +109,6 @@ class RobotTest {
         assertEquals(GridPosition(x = 0, y = 1), robot.gridPosition)
     }
 
-    @Ignore
     @Test
     fun testAdvancingWhenFacingSouthDecreasesYCoordinateByOne() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.SOUTH)
@@ -131,7 +118,6 @@ class RobotTest {
         assertEquals(GridPosition(x = 0, y = -1), robot.gridPosition)
     }
 
-    @Ignore
     @Test
     fun testAdvancingWhenFacingEastIncreasesXCoordinateByOne() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.EAST)
@@ -141,7 +127,6 @@ class RobotTest {
         assertEquals(GridPosition(x = 1, y = 0), robot.gridPosition)
     }
 
-    @Ignore
     @Test
     fun testAdvancingWhenFacingWestDecreasesXCoordinateByOne() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.WEST)
@@ -151,7 +136,6 @@ class RobotTest {
         assertEquals(GridPosition(x = -1, y = 0), robot.gridPosition)
     }
 
-    @Ignore
     @Test
     fun testInstructionsToMoveEastAndNorthFromNorth() {
         val robot = Robot(GridPosition(x = 7, y = 3), Orientation.NORTH)
@@ -162,7 +146,6 @@ class RobotTest {
         assertEquals(Orientation.WEST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testInstructionsToMoveWestAndNorth() {
         val robot = Robot(GridPosition(x = 0, y = 0), Orientation.NORTH)
@@ -173,7 +156,6 @@ class RobotTest {
         assertEquals(Orientation.WEST, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testInstructionsToMoveWestAndSouth() {
         val robot = Robot(GridPosition(x = 2, y = -7), Orientation.EAST)
@@ -184,7 +166,6 @@ class RobotTest {
         assertEquals(Orientation.SOUTH, robot.orientation)
     }
 
-    @Ignore
     @Test
     fun testInstructionsToMoveEastAndNorthFromSouth() {
         val robot = Robot(GridPosition(x = 8, y = 4), Orientation.SOUTH)
