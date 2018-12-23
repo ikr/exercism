@@ -31,7 +31,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 +")))
     }
 
-    @Ignore
     @Test
     fun testErrorIfAdditionAttemptedWithNothingOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -40,7 +39,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("+"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfAdditionAttemptedWithOneNumberOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -49,7 +47,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("1 +"))
     }
 
-    @Ignore
     @Test
     fun testTwoNumbersCanBeSubtracted() {
         assertEquals(
@@ -57,7 +54,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("3 4 -")))
     }
 
-    @Ignore
     @Test
     fun testErrorIfSubtractionAttemptedWithNothingOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -66,7 +62,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("-"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfSubtractionAttemptedWithOneNumberOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
