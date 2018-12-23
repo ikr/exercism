@@ -24,7 +24,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 3 4 5")))
     }
 
-    @Ignore
     @Test
     fun testTwoNumbersCanBeAdded() {
         assertEquals(
