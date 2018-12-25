@@ -219,7 +219,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("1 swap"))
     }
 
-    @Ignore
     @Test
     fun testOverCopiesTheSecondElementIfThereAreOnlyTwo() {
         assertEquals(
@@ -227,7 +226,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 over")))
     }
 
-    @Ignore
     @Test
     fun testOverCopiesTheSecondElementIfThereAreMoreThanTwo() {
         assertEquals(
@@ -235,7 +233,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 3 over")))
     }
 
-    @Ignore
     @Test
     fun testErrorIfOveringAttemptedWithNothingOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -244,7 +241,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("over"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfOveringAttemptedWithOneNumberOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)

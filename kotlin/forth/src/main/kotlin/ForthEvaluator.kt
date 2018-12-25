@@ -26,7 +26,8 @@ private val opsByToken = mapOf(
     "/" to ::opDiv,
     "dup" to ::opDup,
     "drop" to ::opDrop,
-    "swap" to ::opSwap
+    "swap" to ::opSwap,
+    "over" to ::opOver
 )
 
 private fun opPlus(s: Stack<Int>) {
@@ -97,6 +98,17 @@ private fun opSwap(s: Stack<Int>) {
 
     val a = s.pop()
     val b = s.pop()
+    s.push(a)
+    s.push(b)
+}
+
+private fun opOver(s: Stack<Int>) {
+    require(s.size > 1) {
+        "Overing requires that the stack contain at least 2 values"
+    }
+
+    val a = s.pop()
+    val b = s.peek()
     s.push(a)
     s.push(b)
 }
