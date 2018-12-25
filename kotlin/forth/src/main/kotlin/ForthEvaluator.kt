@@ -23,7 +23,10 @@ private val opsByToken = mapOf(
     "+" to ::opPlus,
     "-" to ::opMinus,
     "*" to ::opTimes,
-    "/" to ::opDiv
+    "/" to ::opDiv,
+    "dup" to ::opDup,
+    "drop" to ::opDrop,
+    "swap" to ::opSwap
 )
 
 private fun opPlus(s: Stack<Int>) {
@@ -69,4 +72,31 @@ private fun opDiv(s: Stack<Int>) {
 
     val a = s.pop()
     s.push(a / b)
+}
+
+private fun opDup(s: Stack<Int>) {
+    require(s.size > 0) {
+        "Duplicating requires that the stack contain at least 1 value"
+    }
+
+    s.push(s.peek())
+}
+
+private fun opDrop(s: Stack<Int>) {
+    require(s.size > 0) {
+        "Dropping requires that the stack contain at least 1 value"
+    }
+
+    s.pop()
+}
+
+private fun opSwap(s: Stack<Int>) {
+    require(s.size > 1) {
+        "Swapping requires that the stack contain at least 2 values"
+    }
+
+    val a = s.pop()
+    val b = s.pop()
+    s.push(a)
+    s.push(b)
 }
