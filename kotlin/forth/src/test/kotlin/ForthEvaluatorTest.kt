@@ -70,7 +70,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("1 -"))
     }
 
-    @Ignore
     @Test
     fun testTwoNumbersCanBeMultiplied() {
         assertEquals(

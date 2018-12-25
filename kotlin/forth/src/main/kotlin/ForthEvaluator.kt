@@ -11,16 +11,21 @@ class ForthEvaluator {
 
     private fun evalLine(l: String) {
         l.split(" ").forEach({token ->
-            when (token) {
-                "+" -> sPlus(stack)
-                "-" -> sMinus(stack)
-                else -> sNum(stack, token)
-            }
+            if (token in opsByToken)
+                opsByToken[token]?.invoke(stack)
+            else
+                stack.push(token.toInt())
         })
     }
 }
 
-private fun sPlus(s: Stack<Int>) {
+private val opsByToken = mapOf(
+    "+" to ::opPlus,
+    "-" to ::opMinus,
+    "*" to ::opTimes
+)
+
+private fun opPlus(s: Stack<Int>) {
     require(s.size > 1) {
         "Addition requires that the stack contain at least 2 values"
     }
@@ -30,7 +35,7 @@ private fun sPlus(s: Stack<Int>) {
     s.push(result)
 }
 
-private fun sMinus(s: Stack<Int>) {
+private fun opMinus(s: Stack<Int>) {
     require(s.size == 2) {
         "Subtraction requires that the stack contain at least 2 values"
     }
@@ -40,6 +45,8 @@ private fun sMinus(s: Stack<Int>) {
     s.push(a - b)
 }
 
-private fun sNum(s: Stack<Int>, token: String) {
-    s.push(token.toInt())
+private fun opTimes(s: Stack<Int>) {
+    val result = s.reduce(Int::times)
+    s.clear()
+    s.push(result)
 }
