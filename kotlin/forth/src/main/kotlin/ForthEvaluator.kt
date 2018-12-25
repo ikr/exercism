@@ -5,13 +5,28 @@ import kotlin.text.toIntOrNull
 class ForthEvaluator {
     private val stack = Stack<Int>()
 
+    private val opsByToken = mutableMapOf(
+        "+" to ::opPlus,
+        "-" to ::opMinus,
+        "*" to ::opTimes,
+        "/" to ::opDiv,
+        "dup" to ::opDup,
+        "drop" to ::opDrop,
+        "swap" to ::opSwap,
+        "over" to ::opOver
+    )
+
     fun evaluateProgram(p: List<String>): List<Int> {
-        p.forEach(this::evalLine)
+        p
+            .map(String::toLowerCase)
+            .map({ it.split(" ") })
+            .forEach(this::evalLine)
+
         return stack.toList()
     }
 
-    private fun evalLine(l: String) {
-        l.toLowerCase().split(" ").forEach({ token ->
+    private fun evalLine(tokens: List<String>) {
+        tokens.forEach({ token ->
             when {
                 token in opsByToken -> opsByToken[token]?.invoke(stack)
                 token.toIntOrNull() != null -> stack.push(token.toInt())
@@ -21,18 +36,9 @@ class ForthEvaluator {
             }
         })
     }
-}
 
-private val opsByToken = mapOf(
-    "+" to ::opPlus,
-    "-" to ::opMinus,
-    "*" to ::opTimes,
-    "/" to ::opDiv,
-    "dup" to ::opDup,
-    "drop" to ::opDrop,
-    "swap" to ::opSwap,
-    "over" to ::opOver
-)
+    private fun evalMacro() {}
+}
 
 private fun opPlus(s: Stack<Int>) {
     require(s.size > 1) {
