@@ -315,7 +315,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf(": 1 2 ;"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfEvaluatingAnUndefinedOperator() {
         expectedException.expect(IllegalArgumentException::class.java)

@@ -1,20 +1,24 @@
 import java.util.Stack
 import kotlin.text.toInt
+import kotlin.text.toIntOrNull
 
 class ForthEvaluator {
     private val stack = Stack<Int>()
 
-    fun evaluateProgram(p : List<String>): List<Int> {
+    fun evaluateProgram(p: List<String>): List<Int> {
         p.forEach(this::evalLine)
         return stack.toList()
     }
 
     private fun evalLine(l: String) {
-        l.toLowerCase().split(" ").forEach({token ->
-            if (token in opsByToken)
-                opsByToken[token]?.invoke(stack)
-            else
-                stack.push(token.toInt())
+        l.toLowerCase().split(" ").forEach({ token ->
+            when {
+                token in opsByToken -> opsByToken[token]?.invoke(stack)
+                token.toIntOrNull() != null -> stack.push(token.toInt())
+                else -> throw IllegalArgumentException(
+                    "No definition available for operator \"$token\""
+                )
+            }
         })
     }
 }
