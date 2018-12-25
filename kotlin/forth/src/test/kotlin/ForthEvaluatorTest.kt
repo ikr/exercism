@@ -324,7 +324,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("foo"))
     }
 
-    @Ignore
     @Test
     fun testCaseInsensitivity(){
         assertEquals(
@@ -332,7 +331,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 DUP Dup dup")))
     }
 
-    @Ignore
     @Test
     fun testDropIsCaseInsensitive(){
         assertEquals(
@@ -340,7 +338,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 3 4 DROP Drop drop")))
     }
 
-    @Ignore
     @Test
     fun testSwapIsCaseInsensitive(){
         assertEquals(
@@ -348,7 +345,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 SWAP 3 Swap 4 swap")))
     }
 
-    @Ignore
     @Test
     fun testOverIsCaseInsensitive(){
         assertEquals(

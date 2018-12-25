@@ -10,7 +10,7 @@ class ForthEvaluator {
     }
 
     private fun evalLine(l: String) {
-        l.split(" ").forEach({token ->
+        l.toLowerCase().split(" ").forEach({token ->
             if (token in opsByToken)
                 opsByToken[token]?.invoke(stack)
             else
