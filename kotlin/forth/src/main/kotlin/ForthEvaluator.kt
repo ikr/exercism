@@ -22,7 +22,8 @@ class ForthEvaluator {
 private val opsByToken = mapOf(
     "+" to ::opPlus,
     "-" to ::opMinus,
-    "*" to ::opTimes
+    "*" to ::opTimes,
+    "/" to ::opDiv
 )
 
 private fun opPlus(s: Stack<Int>) {
@@ -46,7 +47,26 @@ private fun opMinus(s: Stack<Int>) {
 }
 
 private fun opTimes(s: Stack<Int>) {
+    require(s.size > 1) {
+        "Multiplication requires that the stack contain at least 2 values"
+    }
+
     val result = s.reduce(Int::times)
     s.clear()
     s.push(result)
+}
+
+private fun opDiv(s: Stack<Int>) {
+    require(s.size == 2) {
+        "Division requires that the stack contain at least 2 values"
+    }
+
+    val b = s.pop()
+
+    require(b != 0) {
+        "Division by 0 is not allowed"
+    }
+
+    val a = s.pop()
+    s.push(a / b)
 }

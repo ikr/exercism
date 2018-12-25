@@ -77,7 +77,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("2 4 *")))
     }
 
-    @Ignore
     @Test
     fun testErrorIfMultiplicationAttemptedWithNothingOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -86,7 +85,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("*"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfMultiplicationAttemptedWithOneNumberOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -95,7 +93,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("1 *"))
     }
 
-    @Ignore
     @Test
     fun testTwoNumbersCanBeDivided() {
         assertEquals(
@@ -103,7 +100,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("12 3 /")))
     }
 
-    @Ignore
     @Test
     fun testThatIntegerDivisionIsUsed() {
         assertEquals(
@@ -111,7 +107,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("8 3 /")))
     }
 
-    @Ignore
     @Test
     fun testErrorIfDividingByZero() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -120,7 +115,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("4 0 /"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfDivisionAttemptedWithNothingOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -129,7 +123,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("/"))
     }
 
-    @Ignore
     @Test
     fun testErrorIfDivisionAttemptedWithOneNumberOnTheStack() {
         expectedException.expect(IllegalArgumentException::class.java)
