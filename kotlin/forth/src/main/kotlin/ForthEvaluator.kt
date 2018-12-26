@@ -20,7 +20,12 @@ class ForthEvaluator {
         p
             .map(String::toLowerCase)
             .map({ it.split(" ") })
-            .forEach(this::evalLine)
+            .forEach {
+                if (it.first() == ":")
+                    evalMacro(it)
+                else
+                    evalLine(it)
+            }
 
         return stack.toList()
     }
@@ -37,7 +42,7 @@ class ForthEvaluator {
         })
     }
 
-    private fun evalMacro() {}
+    private fun evalMacro(tokens: List<String>) {}
 }
 
 private fun opPlus(s: Stack<Int>) {
