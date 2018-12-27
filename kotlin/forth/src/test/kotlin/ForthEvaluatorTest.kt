@@ -1,5 +1,4 @@
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
@@ -291,7 +290,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": foo 5;", ": bar foo ;", ": foo 6 ;", "bar foo")))
     }
 
-    @Ignore
     @Test
     fun testCanDefineWordThatUsesWordWithTheSameName() {
         assertEquals(
@@ -343,7 +341,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf("1 2 OVER Over over")))
     }
 
-    @Ignore
     @Test
     fun testUserDefinedWordsAreCaseInsensitive() {
         assertEquals(

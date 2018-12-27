@@ -8,8 +8,7 @@ class ForthEvaluator {
 
     fun evaluateProgram(p: List<String>): List<Int> {
         p
-            .map(String::toLowerCase)
-            .map({ it.split(" ") })
+            .map({ it.toLowerCase().split(" ") })
             .forEach {
                 if (it.first() == ":")
                     evalMacro(it)
@@ -22,7 +21,6 @@ class ForthEvaluator {
 
     private fun translateLine(tokens: List<String>): List<String> {
         if (tokens.isEmpty()) return tokens
-
         val replacement = macros[tokens.first()]
 
         val head = if (replacement != null)
@@ -52,7 +50,7 @@ class ForthEvaluator {
             "Cannot redefine numbers"
         }
 
-        val body = translateLine(tokens.subList(2, tokens.size - 1))
+        val body = translateLine(removeSemicolon(tokens).drop(2))
         macros += name to body
     }
 }
@@ -150,3 +148,8 @@ private fun opOver(s: Stack<Int>) {
     s.push(a)
     s.push(b)
 }
+
+private fun removeSemicolon(tokens: List<String>): List<String> =
+    tokens
+        .map({ it.replace(";", "") })
+        .filter(String::isNotEmpty)
