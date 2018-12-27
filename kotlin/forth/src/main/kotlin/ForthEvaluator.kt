@@ -4,17 +4,7 @@ import kotlin.text.toIntOrNull
 
 class ForthEvaluator {
     private val stack = Stack<Int>()
-
-    private val opsByToken = mutableMapOf(
-        "+" to ::opPlus,
-        "-" to ::opMinus,
-        "*" to ::opTimes,
-        "/" to ::opDiv,
-        "dup" to ::opDup,
-        "drop" to ::opDrop,
-        "swap" to ::opSwap,
-        "over" to ::opOver
-    )
+    private val macros = mutableMapOf<String, List<String>>()
 
     fun evaluateProgram(p: List<String>): List<Int> {
         p
@@ -24,10 +14,23 @@ class ForthEvaluator {
                 if (it.first() == ":")
                     evalMacro(it)
                 else
-                    evalLine(it)
+                    evalLine(translateLine(it))
             }
 
         return stack.toList()
+    }
+
+    private fun translateLine(tokens: List<String>): List<String> {
+        if (tokens.isEmpty()) return tokens
+
+        val replacement = macros[tokens.first()]
+
+        val head = if (replacement != null)
+            translateLine(replacement)
+        else
+            listOf(tokens.first())
+
+        return head + translateLine(tokens.drop(1))
     }
 
     private fun evalLine(tokens: List<String>) {
@@ -42,8 +45,23 @@ class ForthEvaluator {
         })
     }
 
-    private fun evalMacro(tokens: List<String>) {}
+    private fun evalMacro(tokens: List<String>) {
+        val name = tokens[1]
+        val body = tokens.subList(2, tokens.size - 1)
+        macros += name to body
+    }
 }
+
+private val opsByToken = mutableMapOf(
+    "+" to ::opPlus,
+    "-" to ::opMinus,
+    "*" to ::opTimes,
+    "/" to ::opDiv,
+    "dup" to ::opDup,
+    "drop" to ::opDrop,
+    "swap" to ::opSwap,
+    "over" to ::opOver
+)
 
 private fun opPlus(s: Stack<Int>) {
     require(s.size > 1) {

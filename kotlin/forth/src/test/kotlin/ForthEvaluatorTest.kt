@@ -249,7 +249,6 @@ class ForthEvaluatorTest {
         forthEvaluator.evaluateProgram(listOf("1 over"))
     }
 
-    @Ignore
     @Test
     fun testUserDefinedOperatorsCanConsistOfBuiltInOperators() {
         assertEquals(
@@ -257,7 +256,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": dup-twice dup dup ;", "1 dup-twice")))
     }
 
-    @Ignore
     @Test
     fun testUserDefinedOperatorsAreEvaluatedInTheCorrectOrder() {
         assertEquals(
@@ -265,7 +263,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": countup 1 2 3 ;", "countup")))
     }
 
-    @Ignore
     @Test
     fun testCanRedefineAUserDefinedOperator() {
         assertEquals(
@@ -273,7 +270,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": foo dup ;", ": foo dup dup ;", "1 foo")))
     }
 
-    @Ignore
     @Test
     fun testCanOverrideBuiltInWordOperators() {
         assertEquals(
@@ -281,7 +277,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": swap dup ;", "1 swap")))
     }
 
-    @Ignore
     @Test
     fun testCanOverrideBuiltInArithmeticOperators() {
         assertEquals(
