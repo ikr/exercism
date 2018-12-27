@@ -300,7 +300,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": foo 10;", ": foo foo 1 + ;", "foo")))
     }
 
-    @Ignore
     @Test
     fun testCannotRedefineNumbers() {
         expectedException.expect(IllegalArgumentException::class.java)
@@ -353,7 +352,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": foo dup;", "1 FOO Foo foo")))
     }
 
-    @Ignore
     @Test
     fun testDefinitionsAreCaseInsensitive() {
         assertEquals(

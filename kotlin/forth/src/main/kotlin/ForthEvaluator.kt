@@ -47,6 +47,11 @@ class ForthEvaluator {
 
     private fun evalMacro(tokens: List<String>) {
         val name = tokens[1]
+
+        require(name.toIntOrNull() == null) {
+            "Cannot redefine numbers"
+        }
+
         val body = tokens.subList(2, tokens.size - 1)
         macros += name to body
     }
