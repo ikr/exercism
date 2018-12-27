@@ -52,7 +52,7 @@ class ForthEvaluator {
             "Cannot redefine numbers"
         }
 
-        val body = tokens.subList(2, tokens.size - 1)
+        val body = translateLine(tokens.subList(2, tokens.size - 1))
         macros += name to body
     }
 }

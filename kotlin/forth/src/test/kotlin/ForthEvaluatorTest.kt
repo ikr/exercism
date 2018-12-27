@@ -284,7 +284,6 @@ class ForthEvaluatorTest {
                 forthEvaluator.evaluateProgram(listOf(": + * ;", "3 4 +")))
     }
 
-    @Ignore
     @Test
     fun testCanUseDifferentWordsWithSameName() {
         assertEquals(
