@@ -34,6 +34,16 @@ final class ProteinTranslator {
 
     List<String> translate(String rnaSequence) {
         List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < rnaSequence.length(); i += 3) {
+            String triple = rnaSequence.substring(i, i + 3);
+            Protein p = Protein.match(triple);
+
+            if (p == Protein.STOP) break;
+
+            result.add(p.humanName());
+        }
+
         return result;
     }
 }
