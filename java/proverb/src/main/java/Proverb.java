@@ -1,4 +1,4 @@
-class Proverb {
+final class Proverb {
     private final String[] words;
 
     Proverb(String[] words) {
