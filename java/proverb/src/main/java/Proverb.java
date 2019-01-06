@@ -1,5 +1,5 @@
 class Proverb {
-    private String[] words;
+    private final String[] words;
 
     Proverb(String[] words) {
         this.words = words;
