@@ -8,6 +8,8 @@
 
 using namespace boost::posix_time;
 
+#define EXERCISM_RUN_ALL_TESTS
+
 BOOST_AUTO_TEST_CASE(test_1)
 {
     const ptime actual = gigasecond::advance(time_from_string("2011-04-25 00:00:00"));
