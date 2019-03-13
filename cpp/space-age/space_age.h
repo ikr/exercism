@@ -3,10 +3,20 @@
 
 namespace space_age {
 struct space_age {
-    space_age(const int age_in_seconds_);
-    int seconds() const;
-private:
-  int age_in_seconds;
+    space_age(const double age_in_seconds_);
+    double seconds() const;
+
+    double on_earth() const;
+    double on_jupiter() const;
+    double on_mars() const;
+    double on_mercury() const;
+    double on_neptune() const;
+    double on_saturn() const;
+    double on_uranus() const;
+    double on_venus() const;
+
+  private:
+    double age_in_seconds;
 };
 } // namespace space_age
 
