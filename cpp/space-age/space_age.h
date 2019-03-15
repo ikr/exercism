@@ -16,7 +16,7 @@ struct space_age {
     double on_venus() const;
 
   private:
-    double age_in_seconds;
+    const double age_in_seconds;
 };
 } // namespace space_age
 
