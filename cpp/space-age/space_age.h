@@ -3,7 +3,7 @@
 
 namespace space_age {
 struct space_age {
-    constexpr space_age(const double age_in_seconds_)
+    explicit constexpr space_age(const double age_in_seconds_)
         : age_in_seconds(age_in_seconds_){};
 
     constexpr double seconds() const { return age_in_seconds; }
