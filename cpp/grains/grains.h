@@ -3,7 +3,9 @@
 
 namespace grains {
 
-constexpr long square(const int num) { return num; }
+constexpr int MAX_SQUARE_NUM = 64;
+long square(const int num);
+long total();
 
 } // namespace grains
 
