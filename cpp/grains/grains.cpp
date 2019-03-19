@@ -1,6 +1,4 @@
 #include "grains.h"
-#include <cassert>
-#include <cmath>
 
 long fast_exponent_of_2(const int power) {
     return 1L << power;
