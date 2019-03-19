@@ -7,11 +7,10 @@ long fast_exponent_of_2(const int power) {
     if (!cache[power]) {
         const long value_on_half = fast_exponent_of_2(power / 2);
 
-        if (power % 2) {
+        if (power % 2)
             cache[power] = 2 * value_on_half * value_on_half;
-        } else {
+        else
             cache[power] = value_on_half * value_on_half;
-        }
     }
 
     return cache[power];
