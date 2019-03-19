@@ -1,8 +1,10 @@
 #include "grains.h"
 #include <cassert>
+#include <cmath>
 
 long fast_exponent_of_2(const int power) {
     static long cache[grains::MAX_SQUARE_NUM]{1};
+    assert(power >= 0 && power < grains::MAX_SQUARE_NUM);
 
     if (!cache[power]) {
         const long value_on_half = fast_exponent_of_2(power / 2);
@@ -17,15 +19,9 @@ long fast_exponent_of_2(const int power) {
 }
 
 long grains::square(const int num) {
-    assert(num >= 1 && num <= MAX_SQUARE_NUM);
     return fast_exponent_of_2(num - 1);
 }
 
 long grains::total() {
-    long result{0};
-
-    for (int i = 1; i <= MAX_SQUARE_NUM; ++i)
-        result += square(i);
-
-    return result;
+    return 2 * fast_exponent_of_2(MAX_SQUARE_NUM - 1) - 1;
 }
