@@ -5,7 +5,7 @@ namespace grains {
 
 using ulong = unsigned long long;
 using uint = unsigned char;
-constexpr int MAX_SQUARE_NUM = 64;
+constexpr uint MAX_SQUARE_NUM = 64;
 ulong square(const uint num);
 ulong total();
 
