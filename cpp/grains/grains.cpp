@@ -1,13 +1,16 @@
 #include "grains.h"
+#include <cassert>
+#include <climits>
 
-long fast_exponent_of_2(const int power) {
-    return 1L << power;
+grains::ulong fast_exponent_of_2(const grains::uint power) {
+    assert(power < sizeof(grains::ulong) * CHAR_BIT);
+    return 1ULL << power;
 }
 
-long grains::square(const int num) {
+grains::ulong grains::square(const uint num) {
     return fast_exponent_of_2(num - 1);
 }
 
-long grains::total() {
+grains::ulong grains::total() {
     return 2 * fast_exponent_of_2(MAX_SQUARE_NUM - 1) - 1;
 }

@@ -3,9 +3,11 @@
 
 namespace grains {
 
+using ulong = unsigned long long;
+using uint = unsigned char;
 constexpr int MAX_SQUARE_NUM = 64;
-long square(const int num);
-long total();
+ulong square(const uint num);
+ulong total();
 
 } // namespace grains
 
