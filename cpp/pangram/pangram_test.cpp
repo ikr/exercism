@@ -1,6 +1,7 @@
 #include "pangram.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
+#define EXERCISM_RUN_ALL_TESTS
 
 BOOST_AUTO_TEST_CASE(sentence_empty)
 {
