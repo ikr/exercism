@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace binary_search {
-int find(const std::vector<int> &haystack, int needle);
+int find(const std::vector<int> &haystack, const int needle);
 }
 
 #endif // BINARY_SEARCH_H
