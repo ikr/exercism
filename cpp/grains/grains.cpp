@@ -2,15 +2,15 @@
 #include <cassert>
 #include <climits>
 
-grains::ulong fast_exponent_of_2(const grains::uint power) {
-    assert(power < sizeof(grains::ulong) * CHAR_BIT);
+unsigned long long fast_exponent_of_2(const unsigned char power) {
+    assert(power < sizeof(unsigned long long) * CHAR_BIT);
     return 1ULL << power;
 }
 
-grains::ulong grains::square(const uint num) {
+unsigned long long grains::square(const unsigned char num) {
     return fast_exponent_of_2(num - 1);
 }
 
-grains::ulong grains::total() {
+unsigned long long grains::total() {
     return 2 * fast_exponent_of_2(MAX_SQUARE_NUM - 1) - 1;
 }
