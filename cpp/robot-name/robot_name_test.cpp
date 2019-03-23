@@ -4,6 +4,7 @@
 #include <cctype>
 #include <string>
 
+#define EXERCISM_RUN_ALL_TESTS
 using namespace std;
 
 namespace
