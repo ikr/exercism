@@ -2,13 +2,26 @@
 
 namespace robot_name {
 
-robot::robot() : id{new_name()} {}
+std::unordered_set<std::string> robot::all_ids;
 
-void robot::reset() { id = new_name(); }
+robot::robot() : id{new_id()} {}
+robot::~robot() { all_ids.erase(id); }
 
-std::string robot::new_name() {
-    return random_sequence(provide_letters_distribution(), name_letters_count) +
-           random_sequence(provide_digits_distribution(), name_digits_count);
+void robot::reset() {
+    all_ids.erase(id);
+    id = new_id();
+}
+
+std::string robot::new_id() {
+    auto result =
+        random_sequence(provide_letters_distribution(), name_letters_count) +
+        random_sequence(provide_digits_distribution(), name_digits_count);
+
+    if (all_ids.count(result))
+        return new_id();
+
+    all_ids.insert(result);
+    return result;
 }
 
 std::string
