@@ -10,7 +10,8 @@ const std::locale default_locale;
 char normalize(const char x) { return std::tolower(x, default_locale); }
 
 bool is_letter(const char x) {
-    return normalize(x) >= 'a' && normalize(x) <= 'z';
+    const char nx = normalize(x);
+    return nx >= 'a' && nx <= 'z';
 }
 
 bool is_pangram(const std::string &xs) {
