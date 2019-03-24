@@ -36,13 +36,8 @@ robot::random_sequence(std::uniform_int_distribution<short> &distribution,
     return result;
 }
 
-std::random_device &robot::provide_random_device() {
-    static std::random_device result;
-    return result;
-}
-
 std::mt19937 &robot::provide_random_generator() {
-    static std::mt19937 result{provide_random_device()()};
+    static std::mt19937 result{std::random_device{}()};
     return result;
 }
 

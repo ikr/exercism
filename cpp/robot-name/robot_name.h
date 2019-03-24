@@ -8,7 +8,10 @@ namespace robot_name {
 struct robot {
     robot();
     ~robot();
-    std::string name() const { return id; }
+    robot(const robot &) = delete;
+    robot &operator=(const robot &) = delete;
+
+    const std::string& name() const { return id; }
     void reset();
 
   private:
@@ -18,8 +21,6 @@ struct robot {
     static constexpr size_t name_letters_count = 2;
     static constexpr size_t name_digits_count = 3;
 
-    robot(const robot &);
-    robot &operator=(const robot &);
 
     static std::string new_id();
 
@@ -27,7 +28,6 @@ struct robot {
     random_sequence(std::uniform_int_distribution<short> &distribution,
                     const size_t length);
 
-    static std::random_device &provide_random_device();
     static std::mt19937 &provide_random_generator();
     static std::uniform_int_distribution<short> &provide_letters_distribution();
     static std::uniform_int_distribution<short> &provide_digits_distribution();
