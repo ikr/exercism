@@ -5,9 +5,8 @@
 namespace pangram {
 
 constexpr auto letters_count = 'z' - 'a' + 1;
-const std::locale default_locale;
 
-char normalize(const char x) { return std::tolower(x, default_locale); }
+char normalize(const char x) { return std::tolower(x, std::locale::classic()); }
 
 bool is_letter(const char x) {
     const char nx = normalize(x);
