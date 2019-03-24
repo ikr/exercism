@@ -1,6 +1,5 @@
 #ifndef ROBOT_NAME_H
 #define ROBOT_NAME_H
-#include <random>
 #include <string>
 #include <unordered_set>
 
@@ -21,16 +20,7 @@ struct robot {
     static constexpr size_t name_letters_count = 2;
     static constexpr size_t name_digits_count = 3;
 
-
     static std::string new_id();
-
-    static std::string
-    random_sequence(std::uniform_int_distribution<short> &distribution,
-                    const size_t length);
-
-    static std::mt19937 &provide_random_generator();
-    static std::uniform_int_distribution<short> &provide_letters_distribution();
-    static std::uniform_int_distribution<short> &provide_digits_distribution();
 };
 } // namespace robot_name
 
