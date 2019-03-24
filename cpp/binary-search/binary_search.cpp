@@ -19,7 +19,7 @@ int find(const std::vector<int> &haystack, const int needle) {
                 throw std::domain_error{"Needle not found"};
         }
 
-        const int mid = begin + sz / 2 + (sz % 2 ? 1 : 0);
+        const int mid = begin + (sz + 1) / 2;
 
         if (haystack[mid] <= needle)
             begin = mid;
