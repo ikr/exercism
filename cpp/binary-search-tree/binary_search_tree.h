@@ -5,6 +5,7 @@ namespace binary_tree {
 
 template <typename T> struct binary_tree {
     explicit binary_tree(const T &d);
+    ~binary_tree();
 
     void insert(const T &d);
     const T &data() const { return mdata; }
