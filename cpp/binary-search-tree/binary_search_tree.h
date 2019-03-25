@@ -4,12 +4,12 @@
 namespace binary_tree {
 
 template <typename T> struct binary_tree {
-    binary_tree(const T &d);
+    explicit binary_tree(const T &d);
 
     void insert(const T &d);
     const T &data() const { return mdata; }
-    const binary_tree *left() const;
-    const binary_tree *right() const;
+    const binary_tree *left() const { return pleft; }
+    const binary_tree *right() const { return pright; }
 
   private:
     const T mdata;
