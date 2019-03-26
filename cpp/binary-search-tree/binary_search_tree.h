@@ -1,6 +1,8 @@
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
 
+#include <string>
+
 namespace binary_tree {
 
 template <typename T> struct binary_tree {
@@ -13,10 +15,13 @@ template <typename T> struct binary_tree {
     const binary_tree *right() const { return pright; }
 
   private:
-    const T mdata;
+    T mdata;
     binary_tree *pleft;
     binary_tree *pright;
 };
+
+template struct binary_tree<uint32_t>;
+template struct binary_tree<std::string>;
 
 } // namespace binary_tree
 

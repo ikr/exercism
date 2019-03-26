@@ -2,6 +2,7 @@
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 #include <vector>
+#include <memory>
 
 // test data version: 1.0.0
 
