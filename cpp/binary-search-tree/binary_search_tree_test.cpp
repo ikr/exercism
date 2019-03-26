@@ -1,8 +1,8 @@
 #include "binary_search_tree.h"
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
-#include <vector>
 #include <memory>
+#include <vector>
 
 // test data version: 1.0.0
 
@@ -36,8 +36,6 @@ BOOST_AUTO_TEST_CASE(data_is_retained) {
     auto tested = make_tree<uint32_t>({4});
     test_leaf<uint32_t>(tested, 4, false, false);
 }
-
-#if defined(EXERCISM_RUN_ALL_TESTS)
 
 BOOST_AUTO_TEST_CASE(smaller_number_at_left_node) {
     auto tested = make_tree<uint32_t>({4, 2});
@@ -73,6 +71,8 @@ BOOST_AUTO_TEST_CASE(can_create_complex_tree) {
     test_leaf<uint32_t>(tested->right()->left(), 5, false, false);
     test_leaf<uint32_t>(tested->right()->right(), 7, false, false);
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 // The tests below require an implementation of an iterator.
 // You can get more details here: http://www.cplusplus.com/reference/iterator/
