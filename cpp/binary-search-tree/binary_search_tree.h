@@ -6,6 +6,8 @@
 
 namespace binary_tree {
 
+template <typename T> struct const_iterator;
+
 template <typename T> struct binary_tree {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
@@ -16,10 +18,21 @@ template <typename T> struct binary_tree {
     const tree_ptr &left() const { return pleft; }
     const tree_ptr &right() const { return pright; }
 
+    const_iterator<T> begin() const;
+    const_iterator<T> end() const;
+
   private:
     T mdata;
     tree_ptr pleft;
     tree_ptr pright;
+};
+
+template <typename T> struct const_iterator {
+    const_iterator(const binary_tree<T> *proot, const binary_tree<T> *pnode);
+
+    bool operator!=(const const_iterator &other) const;
+    const_iterator &operator++();
+    T operator*() const;
 };
 
 template struct binary_tree<uint32_t>;
