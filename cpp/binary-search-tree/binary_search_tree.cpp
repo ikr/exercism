@@ -57,6 +57,7 @@ bool const_iterator<T>::operator!=(const const_iterator &other) const {
 }
 
 template <typename T> const_iterator<T> &const_iterator<T>::operator++() {
+    std::abort();
     return *this;
 }
 

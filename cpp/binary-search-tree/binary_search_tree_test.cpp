@@ -72,8 +72,6 @@ BOOST_AUTO_TEST_CASE(can_create_complex_tree) {
     test_leaf<uint32_t>(tested->right()->right(), 7, false, false);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 // The tests below require an implementation of an iterator.
 // You can get more details here: http://www.cplusplus.com/reference/iterator/
 
@@ -126,5 +124,3 @@ BOOST_AUTO_TEST_CASE(can_sort_complex_tree_strings) {
                                 "should", "be", "sorted"}),
         {"A", "be", "few", "random", "should", "sorted", "strings", "that"});
 }
-
-#endif
