@@ -28,15 +28,20 @@ template <typename T> struct binary_tree {
 };
 
 template <typename T> struct const_iterator {
-    const_iterator(const binary_tree<T> *proot, const binary_tree<T> *pnode);
+    const_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_);
 
     bool operator!=(const const_iterator &other) const;
     const_iterator &operator++();
     T operator*() const;
+private:
+  const binary_tree<T> *proot;
+  const binary_tree<T> *pnode;
 };
 
 template struct binary_tree<uint32_t>;
+template struct const_iterator<uint32_t>;
 template struct binary_tree<std::string>;
+template struct const_iterator<std::string>;
 
 } // namespace binary_tree
 

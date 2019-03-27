@@ -16,4 +16,22 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
     }
 }
 
+template <typename T>
+const_iterator<T>::const_iterator(const binary_tree<T> *proot_,
+                                  const binary_tree<T> *pnode_)
+    : proot{proot_}, pnode{pnode_} {}
+
+template <typename T>
+bool const_iterator<T>::operator!=(const const_iterator &other) const {
+    return proot != other.proot || pnode != other.pnode;
+}
+
+template <typename T> const_iterator<T> &const_iterator<T>::operator++() {
+    return *this;
+}
+
+template <typename T> T const_iterator<T>::operator*() const {
+    return pnode->data();
+}
+
 } // namespace binary_tree
