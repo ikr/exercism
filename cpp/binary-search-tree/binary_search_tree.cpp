@@ -1,23 +1,31 @@
 #include "binary_search_tree.h"
+#include <vector>
 
 namespace {
 
 template <typename T>
 const binary_tree::binary_tree<T> &
-leftmost(const binary_tree::binary_tree<T> &root) {
-    if (!root.left())
-        return root;
+leftmost(const binary_tree::binary_tree<T> &node) {
+    if (!node.left())
+        return node;
 
-    return leftmost(*(root.left()));
+    return leftmost(*(node.left()));
 }
 
 template <typename T>
 const binary_tree::binary_tree<T> &
-rightmost(const binary_tree::binary_tree<T> &root) {
-    if (!root.right())
-        return root;
+rightmost(const binary_tree::binary_tree<T> &node) {
+    if (!node.right())
+        return node;
 
-    return leftmost(*(root.right()));
+    return leftmost(*(node.right()));
+}
+
+template <typename T>
+std::vector<const binary_tree::binary_tree<T> *>
+path_between(const binary_tree::binary_tree<T> &root,
+             const binary_tree::binary_tree<T> &node) {
+    return {};
 }
 
 } // namespace
