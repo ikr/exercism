@@ -1,5 +1,27 @@
 #include "binary_search_tree.h"
 
+namespace {
+
+template <typename T>
+const binary_tree::binary_tree<T> &
+leftmost(const binary_tree::binary_tree<T> &root) {
+    if (!root.left())
+        return root;
+
+    return leftmost(*(root.left()));
+}
+
+template <typename T>
+const binary_tree::binary_tree<T> &
+rightmost(const binary_tree::binary_tree<T> &root) {
+    if (!root.right())
+        return root;
+
+    return leftmost(*(root.right()));
+}
+
+} // namespace
+
 namespace binary_tree {
 
 template <typename T>
@@ -14,6 +36,14 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
     } else {
         branch->insert(d);
     }
+}
+
+template <typename T> const_iterator<T> binary_tree<T>::begin() const {
+    return const_iterator<T>{this, &(leftmost(*this))};
+}
+
+template <typename T> const_iterator<T> binary_tree<T>::end() const {
+    return const_iterator<T>{this, rightmost(*this).right().get()};
 }
 
 template <typename T>
