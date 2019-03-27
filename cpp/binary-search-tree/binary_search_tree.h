@@ -10,7 +10,6 @@ template <typename T> struct binary_tree {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
     explicit binary_tree(const T &d);
-    ~binary_tree();
 
     void insert(const T &d);
     const T &data() const { return mdata; }
