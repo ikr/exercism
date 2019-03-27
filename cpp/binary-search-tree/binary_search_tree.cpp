@@ -10,7 +10,7 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
     tree_ptr &branch = d <= mdata ? pleft : pright;
 
     if (!branch) {
-        branch = std::move(tree_ptr{new binary_tree(d)});
+        branch = tree_ptr{new binary_tree(d)};
     } else {
         branch->insert(d);
     }
