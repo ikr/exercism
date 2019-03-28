@@ -5,7 +5,7 @@
 namespace {
 
 template <typename T> using btree = binary_tree::binary_tree<T>;
-template <typename T> using btree_path = std::vector<const btree<T> *>;
+template <typename T> using node_ptrs = std::vector<const btree<T> *>;
 
 template <typename T> const btree<T> &leftmost(const btree<T> &node) {
     if (!node.left())
@@ -15,27 +15,13 @@ template <typename T> const btree<T> &leftmost(const btree<T> &node) {
 }
 
 template <typename T>
-void path_between_recur(btree_path<T> &path_so_far, const btree<T> &node) {
-    assert(path_so_far.size());
-    const btree<T> *pprev = path_so_far.back();
-
-    if (pprev == &node)
+void traverse_in_order(const btree<T> *pnode, node_ptrs<T> &result) {
+    if (!pnode)
         return;
 
-    const btree<T> *pbranch = node.data() <= pprev->data()
-                                  ? pprev->left().get()
-                                  : pprev->right().get();
-
-    assert(pbranch);
-    path_so_far.push_back(pbranch);
-    path_between_recur(path_so_far, node);
-}
-
-template <typename T>
-btree_path<T> path_between(const btree<T> &root, const btree<T> &node) {
-    btree_path<T> result{&root};
-    path_between_recur(result, node);
-    return result;
+    traverse_in_order(pnode->left().get(), result);
+    result.push_back(pnode);
+    traverse_in_order(pnode->right().get(), result);
 }
 
 } // namespace
@@ -76,16 +62,19 @@ bool const_iterator<T>::operator!=(const const_iterator &other) const {
 
 template <typename T> const_iterator<T> &const_iterator<T>::operator++() {
     assert(pnode);
-    auto path = path_between(*proot, *pnode);
 
-    for (auto i = path.rbegin(); i != path.rend(); ++i) {
-        if ((*i)->right()) {
-            pnode = (*i)->right().get();
+    node_ptrs<T> all_nodes;
+    traverse_in_order(proot, all_nodes);
+
+    for (auto i = all_nodes.begin(); i != all_nodes.end(); ++i) {
+        if (*i == pnode) {
+            ++i;
+            pnode = i == all_nodes.end() ? nullptr : *i;
             return *this;
         }
     }
 
-    pnode = proot->end().pnode;
+    pnode = nullptr;
     return *this;
 }
 
