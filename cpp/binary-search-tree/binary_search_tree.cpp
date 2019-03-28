@@ -14,13 +14,6 @@ template <typename T> const btree<T> &leftmost(const btree<T> &node) {
     return leftmost(*(node.left()));
 }
 
-template <typename T> const btree<T> &rightmost(const btree<T> &node) {
-    if (!node.right())
-        return node;
-
-    return leftmost(*(node.right()));
-}
-
 template <typename T>
 void path_between_recur(btree_path<T> &path_so_far, const btree<T> &node) {
     assert(path_so_far.size());
@@ -32,7 +25,6 @@ void path_between_recur(btree_path<T> &path_so_far, const btree<T> &node) {
     const btree<T> *pbranch = node.data() <= pprev->data()
                                   ? pprev->left().get()
                                   : pprev->right().get();
-
 
     assert(pbranch);
     path_so_far.push_back(pbranch);
@@ -69,7 +61,7 @@ template <typename T> const_iterator<T> binary_tree<T>::begin() const {
 }
 
 template <typename T> const_iterator<T> binary_tree<T>::end() const {
-    return const_iterator<T>{this, rightmost(*this).right().get()};
+    return const_iterator<T>{this, nullptr};
 }
 
 template <typename T>
@@ -83,11 +75,22 @@ bool const_iterator<T>::operator!=(const const_iterator &other) const {
 }
 
 template <typename T> const_iterator<T> &const_iterator<T>::operator++() {
-    std::abort();
+    assert(pnode);
+    auto path = path_between(*proot, *pnode);
+
+    for (auto i = path.rbegin(); i != path.rend(); ++i) {
+        if ((*i)->right()) {
+            pnode = (*i)->right().get();
+            return *this;
+        }
+    }
+
+    pnode = proot->end().pnode;
     return *this;
 }
 
 template <typename T> T const_iterator<T>::operator*() const {
+    assert(pnode);
     return pnode->data();
 }
 
