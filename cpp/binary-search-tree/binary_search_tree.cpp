@@ -3,18 +3,16 @@
 
 namespace {
 
-template <typename T>
-const binary_tree::binary_tree<T> &
-leftmost(const binary_tree::binary_tree<T> &node) {
+template <typename T> using btree = binary_tree::binary_tree<T>;
+
+template <typename T> const btree<T> &leftmost(const btree<T> &node) {
     if (!node.left())
         return node;
 
     return leftmost(*(node.left()));
 }
 
-template <typename T>
-const binary_tree::binary_tree<T> &
-rightmost(const binary_tree::binary_tree<T> &node) {
+template <typename T> const btree<T> &rightmost(const btree<T> &node) {
     if (!node.right())
         return node;
 
@@ -22,9 +20,8 @@ rightmost(const binary_tree::binary_tree<T> &node) {
 }
 
 template <typename T>
-std::vector<const binary_tree::binary_tree<T> *>
-path_between(const binary_tree::binary_tree<T> &root,
-             const binary_tree::binary_tree<T> &node) {
+std::vector<const btree<T> *> path_between(const btree<T> &root,
+                                           const btree<T> &node) {
     return {};
 }
 
