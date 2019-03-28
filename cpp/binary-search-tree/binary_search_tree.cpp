@@ -4,6 +4,7 @@
 namespace {
 
 template <typename T> using btree = binary_tree::binary_tree<T>;
+template <typename T> using btree_path = std::vector<const btree<T> *>;
 
 template <typename T> const btree<T> &leftmost(const btree<T> &node) {
     if (!node.left())
@@ -20,7 +21,7 @@ template <typename T> const btree<T> &rightmost(const btree<T> &node) {
 }
 
 template <typename T>
-std::vector<const btree<T> *> path_between(const btree<T> &root,
+btree_path<T> path_between(const btree<T> &root,
                                            const btree<T> &node) {
     return {};
 }
