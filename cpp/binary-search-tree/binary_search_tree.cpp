@@ -1,4 +1,5 @@
 #include "binary_search_tree.h"
+#include <cassert>
 #include <vector>
 
 namespace {
@@ -21,9 +22,28 @@ template <typename T> const btree<T> &rightmost(const btree<T> &node) {
 }
 
 template <typename T>
-btree_path<T> path_between(const btree<T> &root,
-                                           const btree<T> &node) {
-    return {};
+void path_between_recur(btree_path<T> &path_so_far, const btree<T> &node) {
+    assert(path_so_far.size());
+    const btree<T> *pprev = path_so_far.back();
+
+    if (pprev == &node)
+        return;
+
+    const btree<T> *pbranch = node.data() <= pprev->data()
+                                  ? pprev->left().get()
+                                  : pprev->right().get();
+
+
+    assert(pbranch);
+    path_so_far.push_back(pbranch);
+    path_between_recur(path_so_far, node);
+}
+
+template <typename T>
+btree_path<T> path_between(const btree<T> &root, const btree<T> &node) {
+    btree_path<T> result{&root};
+    path_between_recur(result, node);
+    return result;
 }
 
 } // namespace
