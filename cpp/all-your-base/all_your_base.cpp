@@ -4,8 +4,10 @@ namespace {
 
 unsigned int total_value(unsigned int in_base,
                          const all_your_base::digits &in_digits) {
-    unsigned int result = 0;
+    if (in_digits.size() && !in_digits[0])
+        return 0;
 
+    unsigned int result = 0;
     for (auto i = in_digits.begin(); i != in_digits.end(); ++i) {
         if (*i >= in_base)
             return 0;

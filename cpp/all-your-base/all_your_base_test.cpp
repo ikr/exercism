@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(multiple_zeros) {
 
 BOOST_AUTO_TEST_CASE(leading_zeros) {
     vector<unsigned int> in_digits{0, 6, 0};
-    vector<unsigned int> expected{4, 2};
+    vector<unsigned int> expected{};
     vector<unsigned int> out_digits = all_your_base::convert(7, in_digits, 10);
 
     BOOST_REQUIRE_EQUAL_COLLECTIONS(expected.begin(), expected.end(),
