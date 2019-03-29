@@ -34,17 +34,21 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
     }
 }
 
-template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
+template <typename T> void binary_tree<T>::provide_iter_storage() const {
     if (!iter_storage) {
         std::unique_ptr<node_ptrs> new_iter_storage(new node_ptrs());
         traverse_in_order(this, *new_iter_storage);
         iter_storage.swap(new_iter_storage);
     }
+}
 
+template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
+    provide_iter_storage();
     return btree_iterator<T>{iter_storage->begin()};
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::end() const {
+    provide_iter_storage();
     return btree_iterator<T>{iter_storage->end()};
 }
 

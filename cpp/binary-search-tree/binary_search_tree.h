@@ -27,6 +27,7 @@ template <typename T> struct binary_tree {
     tree_ptr pleft;
     tree_ptr pright;
 
+    void provide_iter_storage() const;
     using node_ptrs = std::vector<const binary_tree<T> *>;
     mutable std::unique_ptr<node_ptrs> iter_storage;
 };
