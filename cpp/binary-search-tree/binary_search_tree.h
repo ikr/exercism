@@ -3,10 +3,11 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 namespace binary_tree {
 
-template <typename T> struct const_iterator;
+template <typename T> struct btree_iterator;
 
 template <typename T> struct binary_tree {
     using tree_ptr = std::unique_ptr<binary_tree>;
@@ -18,30 +19,36 @@ template <typename T> struct binary_tree {
     const tree_ptr &left() const { return pleft; }
     const tree_ptr &right() const { return pright; }
 
-    const_iterator<T> begin() const;
-    const_iterator<T> end() const;
+    btree_iterator<T> begin() const;
+    btree_iterator<T> end() const;
 
   private:
     T mdata;
     tree_ptr pleft;
     tree_ptr pright;
+
+    using node_ptrs = std::vector<const binary_tree<T> *>;
+    mutable std::unique_ptr<node_ptrs> iter_storage;
 };
 
-template <typename T> struct const_iterator {
-    const_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_);
+template <typename T> struct btree_iterator {
+    using node_ptrs_iter =
+        typename std::vector<const binary_tree<T> *>::const_iterator;
 
-    bool operator!=(const const_iterator &other) const;
-    const_iterator &operator++();
+    explicit btree_iterator(node_ptrs_iter impl_);
+
+    bool operator!=(const btree_iterator &other) const;
+    btree_iterator &operator++();
     T operator*() const;
-private:
-  const binary_tree<T> *proot;
-  const binary_tree<T> *pnode;
+
+  private:
+    node_ptrs_iter impl;
 };
 
 template struct binary_tree<uint32_t>;
-template struct const_iterator<uint32_t>;
+template struct btree_iterator<uint32_t>;
 template struct binary_tree<std::string>;
-template struct const_iterator<std::string>;
+template struct btree_iterator<std::string>;
 
 } // namespace binary_tree
 
