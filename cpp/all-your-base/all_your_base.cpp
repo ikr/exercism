@@ -8,11 +8,11 @@ unsigned int total_value(unsigned int in_base,
         return 0;
 
     unsigned int result = 0;
-    for (auto i = in_digits.begin(); i != in_digits.end(); ++i) {
-        if (*i >= in_base)
+    for (auto d : in_digits) {
+        if (d >= in_base)
             return 0;
 
-        result = in_base * result + *i;
+        result = in_base * result + d;
     }
 
     return result;
