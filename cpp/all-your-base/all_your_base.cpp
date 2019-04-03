@@ -1,4 +1,5 @@
 #include "all_your_base.h"
+#include <algorithm>
 
 namespace {
 
@@ -31,10 +32,11 @@ digits convert(unsigned int in_base, const digits &in_digits,
     digits result;
 
     while (remainder > 0) {
-        result.insert(result.begin(), remainder % out_base);
+        result.push_back(remainder % out_base);
         remainder /= out_base;
     }
 
+    std::reverse(result.begin(), result.end());
     return result;
 }
 
