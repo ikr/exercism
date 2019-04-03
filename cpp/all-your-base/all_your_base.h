@@ -7,8 +7,8 @@ namespace all_your_base {
 
 using digits = std::vector<unsigned int>;
 
-digits convert(unsigned int in_base, const digits &in_digits,
-               unsigned int out_base);
+digits convert(const unsigned int in_base, const digits &in_digits,
+               const unsigned int out_base);
 
 } // namespace all_your_base
 
