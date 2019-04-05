@@ -69,4 +69,9 @@ template <typename T> T btree_iterator<T>::operator*() const {
     return (*impl)->data();
 }
 
+template struct binary_tree<uint32_t>;
+template struct btree_iterator<uint32_t>;
+template struct binary_tree<std::string>;
+template struct btree_iterator<std::string>;
+
 } // namespace binary_tree

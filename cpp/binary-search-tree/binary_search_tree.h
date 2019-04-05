@@ -46,11 +46,6 @@ template <typename T> struct btree_iterator {
     node_ptrs_iter impl;
 };
 
-template struct binary_tree<uint32_t>;
-template struct btree_iterator<uint32_t>;
-template struct binary_tree<std::string>;
-template struct btree_iterator<std::string>;
-
 } // namespace binary_tree
 
 #endif // BINARY_SEARCH_TREE_H
