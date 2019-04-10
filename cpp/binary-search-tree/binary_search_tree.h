@@ -26,24 +26,18 @@ template <typename T> struct binary_tree {
     T mdata;
     tree_ptr pleft;
     tree_ptr pright;
-
-    void provide_iter_storage() const;
-    using node_ptrs = std::vector<const binary_tree<T> *>;
-    mutable std::unique_ptr<node_ptrs> iter_storage;
 };
 
 template <typename T> struct btree_iterator {
-    using node_ptrs_iter =
-        typename std::vector<const binary_tree<T> *>::const_iterator;
-
-    explicit btree_iterator(node_ptrs_iter impl_);
+    using node_ptrs = std::vector<const binary_tree<T> *>;
+    explicit btree_iterator(node_ptrs &&path_from_root_);
 
     bool operator!=(const btree_iterator &other) const;
     btree_iterator &operator++();
     T operator*() const;
 
   private:
-    node_ptrs_iter impl;
+    node_ptrs path_from_root;
 };
 
 } // namespace binary_tree
