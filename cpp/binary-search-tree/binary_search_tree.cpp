@@ -17,8 +17,15 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
-    // TODO
-    return btree_iterator<T>{{this}};
+    typename btree_iterator<T>::node_ptrs path{this};
+    auto pnode = this;
+
+    while (pnode->left()) {
+        pnode = pnode->left().get();
+        path.push_back(pnode);
+    }
+
+    return btree_iterator<T>{path};
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::end() const {
@@ -26,8 +33,8 @@ template <typename T> btree_iterator<T> binary_tree<T>::end() const {
 }
 
 template <typename T>
-btree_iterator<T>::btree_iterator(node_ptrs &&path_from_root_)
-    : path_from_root{std::move(path_from_root_)} {}
+btree_iterator<T>::btree_iterator(const node_ptrs &path_from_root_)
+    : path_from_root{path_from_root_} {}
 
 template <typename T>
 bool btree_iterator<T>::operator!=(const btree_iterator &other) const {

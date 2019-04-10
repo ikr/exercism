@@ -30,7 +30,7 @@ template <typename T> struct binary_tree {
 
 template <typename T> struct btree_iterator {
     using node_ptrs = std::vector<const binary_tree<T> *>;
-    explicit btree_iterator(node_ptrs &&path_from_root_);
+    explicit btree_iterator(const node_ptrs &path_from_root_);
 
     bool operator!=(const btree_iterator &other) const;
     btree_iterator &operator++();
