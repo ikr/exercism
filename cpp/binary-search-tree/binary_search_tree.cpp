@@ -54,8 +54,7 @@ template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
         pnode = min_node(pnode->right().get());
     else if (pnode == proot) {
         pnode = nullptr;
-    }
-    else {
+    } else {
         const binary_tree<T> *pnext = nullptr;
         auto p = proot;
 
