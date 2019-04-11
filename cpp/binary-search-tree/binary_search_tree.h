@@ -2,8 +2,6 @@
 #define BINARY_SEARCH_TREE_H
 
 #include <memory>
-#include <string>
-#include <vector>
 
 namespace binary_tree {
 
