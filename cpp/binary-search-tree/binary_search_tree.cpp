@@ -75,7 +75,7 @@ template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
     return *this;
 }
 
-template <typename T> T btree_iterator<T>::operator*() const {
+template <typename T> const T &btree_iterator<T>::operator*() const {
     return pnode->data();
 }
 

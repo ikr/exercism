@@ -31,7 +31,7 @@ template <typename T> struct btree_iterator {
 
     bool operator!=(const btree_iterator &other) const;
     btree_iterator &operator++();
-    T operator*() const;
+    const T &operator*() const;
 
   private:
     const binary_tree<T> *proot;
