@@ -1,5 +1,20 @@
 #include "binary_search_tree.h"
 
+namespace {
+
+template <typename T>
+const binary_tree::binary_tree<T> *
+min_node(const binary_tree::binary_tree<T> *proot) {
+    auto pnode = proot;
+
+    while (pnode->left())
+        pnode = pnode->left().get();
+
+    return pnode;
+}
+
+} // namespace
+
 namespace binary_tree {
 
 template <typename T>
@@ -17,43 +32,51 @@ template <typename T> void binary_tree<T>::insert(const T &d) {
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
-    typename btree_iterator<T>::node_ptrs path{this};
-    auto pnode = this;
-
-    while (pnode->left()) {
-        pnode = pnode->left().get();
-        path.push_back(pnode);
-    }
-
-    return btree_iterator<T>{path};
+    return btree_iterator<T>{this, min_node(this)};
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::end() const {
-    return btree_iterator<T>{{}};
+    return btree_iterator<T>{this, nullptr};
 }
 
 template <typename T>
-btree_iterator<T>::btree_iterator(const node_ptrs &path_from_root_)
-    : path_from_root{path_from_root_} {}
+btree_iterator<T>::btree_iterator(const binary_tree<T> *proot_,
+                                  const binary_tree<T> *pnode_)
+    : proot{proot_}, pnode{pnode_} {}
 
 template <typename T>
 bool btree_iterator<T>::operator!=(const btree_iterator &other) const {
-    if (path_from_root.size() != other.path_from_root.size())
-        return true;
-
-    if (!path_from_root.size())
-        return false;
-
-    return path_from_root.back() != other.path_from_root.back();
+    return pnode != other.pnode || proot != other.proot;
 }
 
 template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
-    // TODO
+    if (pnode->right())
+        pnode = min_node(pnode->right().get());
+    else {
+        const binary_tree<T> *pnext = nullptr;
+        auto p = proot;
+
+        while (p) {
+            if (p->data() >= pnode->data()) {
+                p = p->left().get();
+
+                if (p == pnode)
+                    break;
+
+                pnext = p;
+            } else {
+                p = p->right().get();
+            }
+        }
+
+        pnode = pnext;
+    }
+
     return *this;
 }
 
 template <typename T> T btree_iterator<T>::operator*() const {
-    return path_from_root.back()->data();
+    return pnode->data();
 }
 
 template struct binary_tree<uint32_t>;

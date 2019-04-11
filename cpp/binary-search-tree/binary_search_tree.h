@@ -29,15 +29,15 @@ template <typename T> struct binary_tree {
 };
 
 template <typename T> struct btree_iterator {
-    using node_ptrs = std::vector<const binary_tree<T> *>;
-    explicit btree_iterator(const node_ptrs &path_from_root_);
+    btree_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_);
 
     bool operator!=(const btree_iterator &other) const;
     btree_iterator &operator++();
     T operator*() const;
 
   private:
-    node_ptrs path_from_root;
+    const binary_tree<T> *proot;
+    const binary_tree<T> *pnode;
 };
 
 } // namespace binary_tree
