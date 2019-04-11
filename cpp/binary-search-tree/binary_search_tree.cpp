@@ -52,21 +52,23 @@ bool btree_iterator<T>::operator!=(const btree_iterator &other) const {
 template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
     if (pnode->right())
         pnode = min_node(pnode->right().get());
+    else if (pnode == proot) {
+        pnode = nullptr;
+    }
     else {
         const binary_tree<T> *pnext = nullptr;
         auto p = proot;
 
-        while (p) {
+        for (;;) {
             if (p->data() >= pnode->data()) {
-                p = p->left().get();
-
-                if (p == pnode)
-                    break;
-
                 pnext = p;
+                p = p->left().get();
             } else {
                 p = p->right().get();
             }
+
+            if (p == pnode)
+                break;
         }
 
         pnode = pnext;
