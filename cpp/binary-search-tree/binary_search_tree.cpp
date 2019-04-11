@@ -25,11 +25,10 @@ binary_tree<T>::binary_tree(const T &d)
 template <typename T> void binary_tree<T>::insert(const T &d) {
     tree_ptr &branch = d <= mdata ? pleft : pright;
 
-    if (!branch) {
+    if (!branch)
         branch.reset(new binary_tree(d));
-    } else {
+    else
         branch->insert(d);
-    }
 }
 
 template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
@@ -53,9 +52,9 @@ bool btree_iterator<T>::operator!=(const btree_iterator &other) const {
 template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
     if (pnode->right())
         pnode = min_node(pnode->right().get());
-    else if (pnode == proot) {
+    else if (pnode == proot)
         pnode = nullptr;
-    } else {
+    else {
         const binary_tree<T> *pnext = nullptr;
         auto p = proot;
 
@@ -63,9 +62,8 @@ template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
             if (p->data() >= pnode->data()) {
                 pnext = p;
                 p = p->left().get();
-            } else {
+            } else
                 p = p->right().get();
-            }
 
             if (p == pnode)
                 break;
