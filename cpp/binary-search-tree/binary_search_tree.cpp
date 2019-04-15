@@ -19,14 +19,14 @@ min_node(const binary_tree::binary_tree<T> *proot) {
 namespace binary_tree {
 
 template <typename T>
-binary_tree<T>::binary_tree(const T &d)
-    : mdata{d}, pleft{nullptr}, pright{nullptr} {}
+binary_tree<T>::binary_tree(T d)
+    : mdata{std::move(d)}, pleft{nullptr}, pright{nullptr} {}
 
-template <typename T> void binary_tree<T>::insert(const T &d) {
+template <typename T> void binary_tree<T>::insert(T d) {
     tree_ptr &branch = d <= mdata ? pleft : pright;
 
     if (!branch)
-        branch.reset(new binary_tree(d));
+        branch.reset(new binary_tree(std::move(d)));
     else
         branch->insert(d);
 }

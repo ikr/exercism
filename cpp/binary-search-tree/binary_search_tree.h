@@ -10,9 +10,9 @@ template <typename T> struct btree_iterator;
 template <typename T> struct binary_tree {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
-    explicit binary_tree(const T &d);
+    explicit binary_tree(T d);
 
-    void insert(const T &d);
+    void insert(T d);
     const T &data() const { return mdata; }
     const tree_ptr &left() const { return pleft; }
     const tree_ptr &right() const { return pright; }
