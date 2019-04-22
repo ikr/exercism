@@ -1,23 +1,7 @@
 #include "binary_search_tree.h"
 #include <string>
 
-namespace {
-
-template <typename T>
-const binary_tree::binary_tree<T> *
-min_node(const binary_tree::binary_tree<T> *proot) {
-    auto pnode = proot;
-
-    while (pnode->left())
-        pnode = pnode->left().get();
-
-    return pnode;
-}
-
-} // namespace
-
 namespace binary_tree {
-
 
 template <typename T> btree_iterator<T> binary_tree<T>::begin() const {
     return btree_iterator<T>{this, min_node(this)};
@@ -39,7 +23,7 @@ bool btree_iterator<T>::operator!=(const btree_iterator &other) const {
 
 template <typename T> btree_iterator<T> &btree_iterator<T>::operator++() {
     if (pnode->right())
-        pnode = min_node(pnode->right().get());
+        pnode = binary_tree<T>::min_node(pnode->right().get());
     else if (pnode == proot)
         pnode = nullptr;
     else {
