@@ -46,11 +46,40 @@ template <typename T> struct binary_tree {
 };
 
 template <typename T> struct btree_iterator {
-    btree_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_);
+    btree_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_)
+        : proot{proot_}, pnode{pnode_} {}
 
-    bool operator!=(const btree_iterator &other) const;
-    btree_iterator &operator++();
-    const T &operator*() const;
+    bool operator!=(const btree_iterator &other) const {
+        return pnode != other.pnode || proot != other.proot;
+    }
+
+    btree_iterator &operator++() {
+        if (pnode->right())
+            pnode = binary_tree<T>::min_node(pnode->right().get());
+        else if (pnode == proot)
+            pnode = nullptr;
+        else {
+            const binary_tree<T> *pnext = nullptr;
+            auto p = proot;
+
+            for (;;) {
+                if (p->data() >= pnode->data()) {
+                    pnext = p;
+                    p = p->left().get();
+                } else
+                    p = p->right().get();
+
+                if (p == pnode)
+                    break;
+            }
+
+            pnode = pnext;
+        }
+
+        return *this;
+    }
+
+    const T &operator*() const { return pnode->data(); }
 
   private:
     const binary_tree<T> *proot;
