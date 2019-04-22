@@ -36,8 +36,11 @@ template <typename T> struct binary_tree {
     const tree_ptr &left() const { return pleft; }
     const tree_ptr &right() const { return pright; }
 
-    btree_iterator<T> begin() const;
-    btree_iterator<T> end() const;
+    btree_iterator<T> begin() const {
+        return btree_iterator<T>{this, min_node(this)};
+    };
+
+    btree_iterator<T> end() const { return btree_iterator<T>{this, nullptr}; }
 
   private:
     T mdata;
