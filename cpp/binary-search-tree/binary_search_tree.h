@@ -19,17 +19,16 @@ template <typename T> struct binary_tree {
         return pnode;
     }
 
-    template <typename D>
-    explicit binary_tree(D &&d)
-        : mdata{std::forward<D>(d)}, pleft{nullptr}, pright{nullptr} {}
+    explicit binary_tree(T d)
+        : mdata{std::move(d)}, pleft{nullptr}, pright{nullptr} {}
 
-    template <typename D> void insert(D &&d) {
+    void insert(T d) {
         tree_ptr &branch = d <= mdata ? pleft : pright;
 
         if (!branch)
-            branch.reset(new binary_tree(std::forward<D>(d)));
+            branch.reset(new binary_tree(std::move(d)));
         else
-            branch->insert(d);
+            branch->insert(std::move(d));
     }
 
     const T &data() const { return mdata; }
