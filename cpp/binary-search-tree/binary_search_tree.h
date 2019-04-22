@@ -10,15 +10,6 @@ template <typename T> struct btree_iterator;
 template <typename T> struct binary_tree {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
-    static const binary_tree *min_node(const binary_tree *proot) {
-        auto pnode = proot;
-
-        while (pnode->left())
-            pnode = pnode->left().get();
-
-        return pnode;
-    }
-
     explicit binary_tree(T d)
         : mdata{std::move(d)}, pleft{nullptr}, pright{nullptr} {}
 
@@ -40,6 +31,15 @@ template <typename T> struct binary_tree {
     };
 
     btree_iterator<T> end() const { return btree_iterator<T>{this, nullptr}; }
+
+    static const binary_tree *min_node(const binary_tree *proot) {
+        auto pnode = proot;
+
+        while (pnode->left())
+            pnode = pnode->left().get();
+
+        return pnode;
+    }
 
   private:
     T mdata;
