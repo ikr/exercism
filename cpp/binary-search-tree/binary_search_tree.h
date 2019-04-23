@@ -21,16 +21,17 @@ const binary_tree<T> *min_node(const binary_tree<T> *proot) {
 template <typename T> struct binary_tree final {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
-    explicit binary_tree(T d)
-        : mdata{std::move(d)}, pleft{nullptr}, pright{nullptr} {}
+    template <typename D>
+    explicit binary_tree(D &&d)
+        : mdata{std::forward<D>(d)}, pleft{nullptr}, pright{nullptr} {}
 
-    void insert(T d) {
+    template <typename D> void insert(D &&d) {
         tree_ptr &branch = d <= mdata ? pleft : pright;
 
         if (!branch)
-            branch.reset(new binary_tree(std::move(d)));
+            branch.reset(new binary_tree(std::forward<D>(d)));
         else
-            branch->insert(std::move(d));
+            branch->insert(std::forward<D>(d));
     }
 
     const T &data() const { return mdata; }
