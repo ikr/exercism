@@ -18,7 +18,7 @@ const binary_tree<T> *min_node(const binary_tree<T> *proot) {
     return pnode;
 }
 
-template <typename T> struct binary_tree {
+template <typename T> struct binary_tree final {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
     explicit binary_tree(T d)
@@ -49,7 +49,7 @@ template <typename T> struct binary_tree {
     tree_ptr pright;
 };
 
-template <typename T> struct btree_iterator {
+template <typename T> struct btree_iterator final {
     btree_iterator(const binary_tree<T> *proot_, const binary_tree<T> *pnode_)
         : proot{proot_}, pnode{pnode_} {}
 
