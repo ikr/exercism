@@ -2,7 +2,6 @@
 #define BINARY_SEARCH_TREE_H
 
 #include <memory>
-#include <type_traits>
 
 namespace binary_tree {
 
@@ -22,9 +21,7 @@ const binary_tree<T> *min_node(const binary_tree<T> *proot) {
 template <typename T> struct binary_tree final {
     using tree_ptr = std::unique_ptr<binary_tree>;
 
-    template <typename D,
-              typename = typename std::enable_if<!std::is_same<
-                  binary_tree<T>, typename std::decay<D>::type>::value>::type>
+    template <typename D>
     explicit binary_tree(D &&d)
         : mdata{std::forward<D>(d)}, pleft{nullptr}, pright{nullptr} {}
 
