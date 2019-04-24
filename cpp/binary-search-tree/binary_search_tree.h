@@ -67,15 +67,13 @@ template <typename T> struct btree_iterator final {
             const binary_tree<T> *pnext = nullptr;
             auto p = proot;
 
-            for (;;) {
+            while (p != pnode) {
                 if (p->data() >= pnode->data()) {
                     pnext = p;
                     p = p->left().get();
-                } else
+                } else {
                     p = p->right().get();
-
-                if (p == pnode)
-                    break;
+                }
             }
 
             pnode = pnext;
