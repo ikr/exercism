@@ -5,6 +5,6 @@
 
 namespace say {
 std::string in_english(unsigned long long x);
-}
+} // namespace say
 
 #endif // SAY_H
