@@ -22,7 +22,6 @@ BOOST_AUTO_TEST_CASE(twenty)
     BOOST_REQUIRE_EQUAL("twenty", say::in_english(20ULL));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 BOOST_AUTO_TEST_CASE(twenty_two)
 {
     BOOST_REQUIRE_EQUAL("twenty-two", say::in_english(22ULL));
@@ -33,6 +32,7 @@ BOOST_AUTO_TEST_CASE(sixty_nine)
     BOOST_REQUIRE_EQUAL("sixty-nine", say::in_english(69ULL));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 BOOST_AUTO_TEST_CASE(one_hundred)
 {
     BOOST_REQUIRE_EQUAL("one hundred", say::in_english(100ULL));

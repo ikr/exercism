@@ -29,12 +29,29 @@ std::string say_dozens(const ull_t x) {
 
     return names[x];
 }
+
+std::string say_20_to_99(const ull_t x) {
+    assert(x >= 20);
+    assert(x < 100);
+
+    const ull_t dozens = x / 10;
+    const ull_t units = x % 10;
+
+    std::string result = say_dozens(dozens);
+
+    if (units) {
+        result += '-';
+        result += say_0_to_20(units);
+    }
+
+    return result;
+}
 } // namespace
 
 namespace say {
 std::string in_english(const ull_t x) {
     if (x < 20) return say_0_to_20(x);
-    if (x < 100) return say_dozens(x / 10);
+    if (x < 100) return say_20_to_99(x);
     throw std::domain_error("Expecting 0 ≤ x ≤ 999'999'999'999");
 }
 } // namespace say
