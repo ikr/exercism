@@ -6,7 +6,7 @@
 namespace {
 using ull_t = unsigned long long;
 
-std::string say_0_to_20(const ull_t x) {
+std::string say_0_to_19(const ull_t x) {
     assert(x >= 0);
     assert(x < 20);
 
@@ -41,7 +41,30 @@ std::string say_20_to_99(const ull_t x) {
 
     if (units) {
         result += '-';
-        result += say_0_to_20(units);
+        result += say_0_to_19(units);
+    }
+
+    return result;
+}
+
+std::string say_0_to_99(const ull_t x) {
+    assert(x >= 0);
+    assert(x < 100);
+    return x < 20 ? say_0_to_19(x) : say_20_to_99(x);
+}
+
+std::string say_100_to_999(const ull_t x) {
+    assert(x >= 100);
+    assert(x < 1000);
+
+    const ull_t hundreds = x / 100;
+    std::string result = say_0_to_19(hundreds);
+    result += " hundred";
+
+    const ull_t remainder = x % 100;
+    if (remainder) {
+        result += ' ';
+        result += say_0_to_99(remainder);
     }
 
     return result;
@@ -50,8 +73,9 @@ std::string say_20_to_99(const ull_t x) {
 
 namespace say {
 std::string in_english(const ull_t x) {
-    if (x < 20) return say_0_to_20(x);
+    if (x < 20) return say_0_to_19(x);
     if (x < 100) return say_20_to_99(x);
+    if (x < 1000) return say_100_to_999(x);
     throw std::domain_error("Expecting 0 ≤ x ≤ 999'999'999'999");
 }
 } // namespace say
