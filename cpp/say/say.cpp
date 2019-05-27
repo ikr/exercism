@@ -50,6 +50,7 @@ std::string say_20_to_99(const ull_t x) {
 std::string say_0_to_99(const ull_t x) {
     assert(x >= 0);
     assert(x < 100);
+
     return x < 20 ? say_0_to_19(x) : say_20_to_99(x);
 }
 
@@ -62,6 +63,7 @@ std::string say_100_to_999(const ull_t x) {
     result += " hundred";
 
     const ull_t remainder = x % 100;
+
     if (remainder) {
         result += ' ';
         result += say_0_to_99(remainder);
