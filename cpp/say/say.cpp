@@ -73,8 +73,7 @@ std::string say_100_to_999(const ull_t x) {
 
 namespace say {
 std::string in_english(const ull_t x) {
-    if (x < 20) return say_0_to_19(x);
-    if (x < 100) return say_20_to_99(x);
+    if (x < 100) return say_0_to_99(x);
     if (x < 1000) return say_100_to_999(x);
     throw std::domain_error("Expecting 0 ≤ x ≤ 999'999'999'999");
 }
