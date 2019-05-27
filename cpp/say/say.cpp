@@ -5,6 +5,7 @@
 
 namespace {
 using ull_t = unsigned long long;
+constexpr ull_t max_spoken = 999999999999;
 
 std::string say_0_to_19(const ull_t x) {
     assert(x >= 0);
@@ -24,7 +25,7 @@ std::string say_dozens(const ull_t x) {
     assert(x < 10);
 
     static const std::vector<std::string> names{
-        "",      "",      "twenty",  "thirty", "fourty",
+        "",      "",      "twenty",  "thirty", "forty",
         "fifty", "sixty", "seventy", "eighty", "ninety"};
 
     return names[x];
@@ -80,18 +81,11 @@ std::string say_0_to_999(const ull_t x) {
     return say_100_to_999(x);
 }
 
-std::string say_1000_to_999999(const ull_t x) {
-    assert(x >= 1000);
-    assert(x < 1000000);
+ull_t pow(const ull_t base, const ull_t exponent) {
+    ull_t result = 1;
 
-    std::string result = say_0_to_999(x / 1000);
-    result += " thousand";
-
-    const ull_t remainder = x % 1000;
-
-    if (remainder) {
-        result += ' ';
-        result += say_0_to_999(remainder);
+    for (ull_t i = 0; i < exponent; ++i) {
+        result *= base;
     }
 
     return result;
@@ -100,8 +94,33 @@ std::string say_1000_to_999999(const ull_t x) {
 
 namespace say {
 std::string in_english(const ull_t x) {
-    if (x < 1000) return say_0_to_999(x);
-    return say_1000_to_999999(x);
-    throw std::domain_error("Expecting 0 ≤ x ≤ 999'999'999'999");
+    if (x < 0 || x > max_spoken)
+        throw std::domain_error("Expecting 0 ≤ x ≤ " +
+                                std::to_string(max_spoken));
+
+    static const std::vector<std::string> group_suffix = {
+        "", " thousand", " million", " billion"};
+
+    assert(pow(1000, group_suffix.size()) - 1 == max_spoken);
+
+    std::string result = "";
+    ull_t remainder = x;
+    ull_t power_of_1000 = 3;
+
+    for (;;) {
+        const ull_t divider = pow(1000, power_of_1000);
+        const ull_t group_value = remainder / divider;
+
+        if (group_value) {
+            if (result.size()) result += " ";
+            result += say_0_to_999(group_value) + group_suffix[power_of_1000];
+        }
+
+        remainder = remainder % divider;
+        if (power_of_1000 == 0) break;
+        --power_of_1000;
+    }
+
+    return result.size() ? result : "zero";
 }
 } // namespace say

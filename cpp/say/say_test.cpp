@@ -60,7 +60,6 @@ BOOST_AUTO_TEST_CASE(nine_hundred_eighty_seven_thousand_six_hundred_fifty_four)
     );
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 BOOST_AUTO_TEST_CASE(one_million)
 {
     BOOST_REQUIRE_EQUAL("one million", say::in_english(1000ULL*1000ULL));
@@ -100,4 +99,3 @@ BOOST_AUTO_TEST_CASE(raises_an_error_for_one_trillion)
 {
     BOOST_REQUIRE_THROW(say::in_english(1000ULL*1000ULL*1000ULL*1000ULL), std::domain_error);
 }
-#endif
