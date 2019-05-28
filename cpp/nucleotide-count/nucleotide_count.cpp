@@ -1,16 +1,13 @@
 #include "nucleotide_count.h"
-#include <sstream>
 #include <stdexcept>
 
 namespace {
 void ensure_valid_nucleotide(const std::map<char, int> &counts,
                              const char nucleotide) {
-    if (!counts.count(nucleotide)) {
-        std::ostringstream message_stream{"Possible nucleotides: ATCG. Got: "};
-        message_stream << nucleotide << ".";
-
-        throw std::invalid_argument(message_stream.str());
-    }
+    if (!counts.count(nucleotide))
+        throw std::invalid_argument(std::string{
+            "Possible nucleotides: ATCG. Got: " + std::to_string(nucleotide) +
+            "."});
 }
 } // namespace
 
