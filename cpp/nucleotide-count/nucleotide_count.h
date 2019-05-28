@@ -2,6 +2,7 @@
 #define NUCLEOTIDE_COUNT_H
 
 #include <map>
+#include <string>
 
 namespace dna {
 struct counter {
