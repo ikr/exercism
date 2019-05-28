@@ -111,7 +111,7 @@ std::string in_english(const ull_t x) {
         const ull_t divider = pow(1000, power_of_1000);
         const ull_t group_value = remainder / divider;
 
-        if (group_value) {
+        if (group_value || (power_of_1000 == 0 && !result.size())) {
             if (result.size()) result += " ";
             result += say_0_to_999(group_value) + group_suffix[power_of_1000];
         }
@@ -121,6 +121,6 @@ std::string in_english(const ull_t x) {
         --power_of_1000;
     }
 
-    return result.size() ? result : "zero";
+    return result;
 }
 } // namespace say
