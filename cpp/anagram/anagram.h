@@ -9,6 +9,10 @@ struct anagram {
 
     std::vector<std::string>
     matches(const std::vector<std::string> &candidates) const;
+
+private:
+  std::string m_sorted_letters;
+  std::string m_original;
 };
 } // namespace anagram
 
