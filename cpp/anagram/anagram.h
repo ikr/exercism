@@ -12,7 +12,7 @@ struct anagram {
 
 private:
   std::string m_sorted_letters;
-  std::string m_original;
+  std::string m_original_lowercased;
 };
 } // namespace anagram
 

@@ -18,7 +18,8 @@ std::string sort_lowercased(std::string s) {
 
 namespace anagram {
 anagram::anagram(const std::string &word)
-    : m_sorted_letters{sort_lowercased(word)}, m_original{lowercase(word)} {}
+    : m_sorted_letters{sort_lowercased(word)}, m_original_lowercased{
+                                                   lowercase(word)} {}
 
 std::vector<std::string>
 anagram::matches(const std::vector<std::string> &candidates) const {
@@ -27,7 +28,7 @@ anagram::matches(const std::vector<std::string> &candidates) const {
     std::copy_if(candidates.begin(), candidates.end(),
                  std::back_inserter(result), [this](std::string word) {
                      return sort_lowercased(word) == m_sorted_letters &&
-                            lowercase(word) != m_original;
+                            lowercase(word) != m_original_lowercased;
                  });
 
     return result;
