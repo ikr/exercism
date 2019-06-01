@@ -12,6 +12,7 @@ struct chess_board {
     const row_col &white() const;
     const row_col &black() const;
     explicit operator std::string() const;
+  bool can_attack() const;
 
   private:
     row_col m_white;

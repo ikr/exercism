@@ -45,7 +45,6 @@ TEST_CASE("string_representation")
     REQUIRE(expected == static_cast<std::string>(board));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("queens_cannot_attack")
 {
     const queen_attack::chess_board board{std::make_pair(2, 3), std::make_pair(4, 7)};
@@ -101,4 +100,3 @@ TEST_CASE("queens_cannot_attack_if_not_on_same_row_column_or_diagonal")
 
     REQUIRE(!board.can_attack());
 }
-#endif
