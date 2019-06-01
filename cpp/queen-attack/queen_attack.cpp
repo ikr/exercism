@@ -1,5 +1,4 @@
 #include "queen_attack.h"
-#include <algorithm>
 #include <cstdlib>
 #include <stdexcept>
 
