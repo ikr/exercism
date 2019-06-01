@@ -20,7 +20,7 @@ std::string print_row(const int row_index, const row_col &white,
 std::string format_row(const std::string &row) {
     std::string result{row};
 
-    for (int i = 1; i != 15; i += 2) {
+    for (int i = 1; i != board_size * 2 - 1; i += 2) {
         result.insert(i, 1, ' ');
     }
 
