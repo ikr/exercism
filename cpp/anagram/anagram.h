@@ -4,15 +4,15 @@
 #include <vector>
 
 namespace anagram {
-struct anagram {
+struct anagram final {
     anagram(const std::string &src);
 
     std::vector<std::string>
     matches(const std::vector<std::string> &candidates) const;
 
   private:
-    std::string m_sorted_letters;
-    std::string m_original_lowercased;
+    const std::string m_sorted_letters;
+    const std::string m_original_lowercased;
 };
 } // namespace anagram
 
