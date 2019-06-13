@@ -6,7 +6,6 @@ TEST_CASE("normalize_capitals")
     REQUIRE("hello" == crypto_square::cipher("Hello").normalize_plain_text());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("normalize_spaces")
 {
     REQUIRE("hithere" == crypto_square::cipher("Hi there").normalize_plain_text());
@@ -17,6 +16,7 @@ TEST_CASE("normalize_numbers")
     REQUIRE("123go" == crypto_square::cipher("1, 2, 3 GO!").normalize_plain_text());
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("plain_text_empty")
 {
     const std::vector<std::string> expected{};
