@@ -6,8 +6,8 @@ namespace {
 constexpr int board_size = 8;
 using row_col = queen_attack::row_col;
 
-std::string print_row(const int row_index, const row_col &white,
-                      const row_col &black) {
+std::string print_row(const int row_index, const row_col white,
+                      const row_col black) {
     std::string result(board_size, '_');
 
     if (row_index == white.first) result[white.second] = 'W';
@@ -30,14 +30,14 @@ std::string format_row(const std::string &row) {
 namespace queen_attack {
 chess_board::chess_board() : m_white{0, 3}, m_black{7, 3} {}
 
-chess_board::chess_board(const row_col &white, const row_col &black)
+chess_board::chess_board(const row_col white, const row_col black)
     : m_white(white), m_black(black) {
     if (m_white == m_black)
         throw std::domain_error("Queens must not occupy the same position");
 }
 
-const row_col &chess_board::white() const { return m_white; }
-const row_col &chess_board::black() const { return m_black; }
+row_col chess_board::white() const { return m_white; }
+row_col chess_board::black() const { return m_black; }
 
 chess_board::operator std::string() const {
     std::string result;
