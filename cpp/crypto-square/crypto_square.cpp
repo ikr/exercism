@@ -16,15 +16,22 @@ WidthHeight text_rect_dimensions(const size_t source_text_length) {
 
 std::string
 print_cipher_text(const std::string &normalized_plain_text,
-                  const std::vector<std::string> &plain_text_segments) {
+                  const std::vector<std::string> &plain_text_segments,
+                  const std::string &spacer) {
     std::string result;
     const WidthHeight dim = text_rect_dimensions(normalized_plain_text.size());
     const auto rows = plain_text_segments;
 
     for (size_t j = 0; j != dim.first; ++j) {
+        if (result.size()) result += spacer;
+
         for (size_t i = 0; i != dim.second; ++i) {
             const auto row = rows[i];
-            if (j < row.size()) result += row[j];
+
+            if (j < row.size())
+                result += row[j];
+            else
+                result += spacer;
         }
     }
 
@@ -63,8 +70,11 @@ std::vector<std::string> cipher::plain_text_segments() const {
 }
 
 std::string cipher::cipher_text() const {
-    return print_cipher_text(normalize_plain_text(), plain_text_segments());
+    return print_cipher_text(normalize_plain_text(), plain_text_segments(), "");
 }
 
-std::string cipher::normalized_cipher_text() const { return cipher_text(); }
+std::string cipher::normalized_cipher_text() const {
+    return print_cipher_text(normalize_plain_text(), plain_text_segments(),
+                             " ");
+}
 } // namespace crypto_square
