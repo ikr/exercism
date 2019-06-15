@@ -52,7 +52,6 @@ TEST_CASE("plain_text_segments_from_phrase")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("cipher_text_empty_phrase")
 {
     REQUIRE("" == crypto_square::cipher("").cipher_text());
@@ -64,6 +63,7 @@ TEST_CASE("cipher_text_long_phrase")
         crypto_square::cipher("If man was meant to stay on the ground, god would have given us roots.").cipher_text());
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("normalized_cipher_text_empty")
 {
     REQUIRE("" == crypto_square::cipher("").normalized_cipher_text());
