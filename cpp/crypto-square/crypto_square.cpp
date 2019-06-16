@@ -22,13 +22,12 @@ build_cipher_text(const std::string &normalized_plain_text,
                   const std::string &spacer) {
     std::string result;
     const Dimensions dim = text_rect_dimensions(normalized_plain_text.size());
-    const auto rows = plain_text_segments;
 
     for (size_t j = 0; j != dim.width; ++j) {
         if (result.size()) result += spacer;
 
         for (size_t i = 0; i != dim.height; ++i) {
-            const auto row = rows[i];
+            const auto row = plain_text_segments[i];
 
             if (j < row.size())
                 result += row[j];
@@ -49,9 +48,8 @@ std::string cipher::normalize_plain_text() const {
 
     std::string result;
     std::copy_if(m_plain_text.begin(), m_plain_text.end(),
-                 std::back_inserter(result), [](const char c) {
-                     return std::isalpha(c, lc) || std::isdigit(c, lc);
-                 });
+                 std::back_inserter(result),
+                 [](const char c) { return std::isalnum(c, lc); });
 
     std::transform(result.begin(), result.end(), result.begin(),
                    [](char c) { return std::tolower(c, lc); });
