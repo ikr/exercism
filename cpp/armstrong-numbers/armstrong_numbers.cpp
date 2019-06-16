@@ -6,9 +6,10 @@
 
 namespace {
 int iexp(const int base, const size_t power) {
-    int result = 1;
-    for (size_t i = 0; i != power; ++i) result *= base;
-    return result;
+    if (!power) return 1;
+    if (power % 2) return base * iexp(base, power - 1);
+    const int sqr = iexp(base, power / 2);
+    return sqr * sqr;
 }
 
 std::vector<int> digits(const int x) {
