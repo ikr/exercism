@@ -1,6 +1,5 @@
 #include "armstrong_numbers.h"
 #include <algorithm>
-#include <cassert>
 #include <numeric>
 #include <vector>
 
