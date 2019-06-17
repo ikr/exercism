@@ -3,7 +3,7 @@
 #include <string>
 
 namespace luhn {
-bool valid(const std::string &s);
+bool valid(std::string num);
 }
 
 #endif //LUHN_H
