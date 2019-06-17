@@ -6,4 +6,4 @@ namespace luhn {
 bool valid(std::string num);
 }
 
-#endif //LUHN_H
+#endif // LUHN_H
