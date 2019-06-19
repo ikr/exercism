@@ -13,9 +13,7 @@ namespace luhn {
 bool valid(std::string num) {
     static std::locale loc;
 
-    num.erase(std::copy_if(num.begin(), num.end(), num.begin(),
-                           [](const char c) { return c != ' '; }),
-              num.end());
+    num.erase(std::remove(num.begin(), num.end(), ' '), num.end());
 
     if (num.size() < 2 ||
         !std::all_of(num.begin(), num.end(),
@@ -30,6 +28,6 @@ bool valid(std::string num) {
         sum += odd_offset ? double_capped(digit) : digit;
     }
 
-    return !(sum % 10);
+    return sum % 10 == 0;
 }
 } // namespace luhn
