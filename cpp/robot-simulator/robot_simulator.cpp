@@ -2,17 +2,17 @@
 
 namespace {
 using robot_simulator::Bearing;
-using robot_simulator::RowCol;
+using robot_simulator::XY;
 
 Bearing bearing_add(const Bearing bearing, const int delta) {
     return static_cast<Bearing>((static_cast<int>(bearing) + delta + 4) % 4);
 }
 
-RowCol operator+(const RowCol a, const RowCol b) {
+XY operator+(const XY a, const XY b) {
     return {a.first + b.first, a.second + b.second};
 }
 
-RowCol advance_delta(const Bearing bearing) {
+XY advance_delta(const Bearing bearing) {
     switch (bearing) {
     case Bearing::NORTH:
         return {0, 1};
@@ -32,10 +32,10 @@ RowCol advance_delta(const Bearing bearing) {
 namespace robot_simulator {
 Robot::Robot() : m_position{0, 0}, m_bearing{Bearing::NORTH} {}
 
-Robot::Robot(RowCol position, Bearing bearing)
+Robot::Robot(XY position, Bearing bearing)
     : m_position(position), m_bearing(bearing) {}
 
-RowCol Robot::get_position() const { return m_position; }
+XY Robot::get_position() const { return m_position; }
 
 Bearing Robot::get_bearing() const { return m_bearing; }
 

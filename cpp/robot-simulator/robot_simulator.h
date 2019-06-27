@@ -5,13 +5,13 @@
 
 namespace robot_simulator {
 enum class Bearing { NORTH, EAST, SOUTH, WEST };
-using RowCol = std::pair<int, int>;
+using XY = std::pair<int, int>;
 
 struct Robot {
     Robot();
-    Robot(RowCol position, Bearing bearing);
+    Robot(XY position, Bearing bearing);
 
-    RowCol get_position() const;
+    XY get_position() const;
     Bearing get_bearing() const;
 
     void turn_right();
@@ -20,7 +20,7 @@ struct Robot {
     void execute_sequence(const std::string &seq);
 
   private:
-    RowCol m_position;
+    XY m_position;
     Bearing m_bearing;
 };
 } // namespace robot_simulator
