@@ -7,7 +7,7 @@ namespace robot_simulator {
 enum class Bearing { NORTH, EAST, SOUTH, WEST };
 using XY = std::pair<int, int>;
 
-struct Robot {
+struct Robot final {
     Robot();
     Robot(XY position, Bearing bearing);
 
