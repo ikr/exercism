@@ -14,7 +14,7 @@ char to_rna(const char nucleotide) {
 
 std::string to_rna(std::string seq) {
     std::transform(seq.cbegin(), seq.cend(), seq.begin(),
-                   [](const char c) { return to_rna(c); });
+                   static_cast<char (*)(char)>(to_rna));
     return seq;
 }
 } // namespace transcription
