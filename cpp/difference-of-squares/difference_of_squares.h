@@ -1,20 +1,21 @@
 #ifndef DIFFERENCE_OF_SQUARES_H
 #define DIFFERENCE_OF_SQUARES_H
-namespace squares {
-int square_of_sum(const int x) {
-    const int sqrt = (x * x + x) / 2;
-    return sqrt * sqrt;
-}
 
 /**
  * See http://mathworld.wolfram.com/FaulhabersFormula.html
  */
-int sum_of_squares(const int x) {
-    const int x_2 = x * x;
-    return (2 * x_2 * x + 3 * x_2 + x) / 6;
+namespace squares {
+constexpr int square_of_sum(const int x) {
+    return (x * x + x) * (x * x + x) / 4;
 }
 
-int difference(const int x) { return square_of_sum(x) - sum_of_squares(x); }
+constexpr int sum_of_squares(const int x) {
+    return (2 * x * x * x + 3 * x * x + x) / 6;
+}
+
+constexpr int difference(const int x) {
+    return square_of_sum(x) - sum_of_squares(x);
+}
 } // namespace squares
 
 #endif // DIFFERENCE_OF_SQUARES_H
