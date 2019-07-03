@@ -3,22 +3,22 @@
 
 namespace sieve {
 std::vector<int> primes(const int limit) {
-    std::vector<bool> scratchboard(limit + 1, true);
-    std::fill_n(scratchboard.begin(), 2, false);
+    std::vector<bool> scratchpad(limit + 1, true);
+    std::fill_n(scratchpad.begin(), 2, false);
 
-    for (auto i = scratchboard.begin() + 2; i != scratchboard.end();
-         i = find(i + 1, scratchboard.end(), true)) {
-        const int current_divider = std::distance(scratchboard.begin(), i);
+    for (auto i = scratchpad.begin() + 2; i != scratchpad.end();
+         i = find(i + 1, scratchpad.end(), true)) {
+        const int current_divider = std::distance(scratchpad.begin(), i);
 
         for (auto idx = 2 * current_divider; idx <= limit;
              idx += current_divider) {
-            scratchboard[idx] = false;
+            scratchpad[idx] = false;
         }
     }
 
     std::vector<int> ans;
     for (auto idx = 2; idx <= limit; ++idx) {
-        if (scratchboard[idx]) ans.push_back(idx);
+        if (scratchpad[idx]) ans.push_back(idx);
     }
     return ans;
 }
