@@ -1,5 +1,6 @@
 #include "sieve.h"
 #include <algorithm>
+#include <iterator>
 
 namespace sieve {
 std::vector<int> primes(const int limit) {
@@ -7,7 +8,7 @@ std::vector<int> primes(const int limit) {
     std::fill_n(scratchpad.begin(), 2, false);
 
     for (auto i = scratchpad.begin() + 2; i != scratchpad.end();
-         i = find(i + 1, scratchpad.end(), true)) {
+         i = std::find(i + 1, scratchpad.end(), true)) {
         const int current_divider = std::distance(scratchpad.begin(), i);
 
         for (auto idx = 2 * current_divider; idx <= limit;
