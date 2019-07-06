@@ -10,9 +10,8 @@ namespace {
  * https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number
  */
 constexpr int nth_prime_upper_bound(const int n) {
-    return n < 6
-               ? 9
-               : static_cast<int>(n * std::log(n) + n * std::log(std::log(n)));
+    return n < 6 ? 9
+                 : static_cast<int>(n * (std::log(n) + std::log(std::log(n))));
 }
 
 /**
