@@ -4,10 +4,9 @@
 namespace {
 void remove_multiples_of_others(std::vector<int> &xs) {
     xs.erase(std::remove_if(xs.begin(), xs.end(),
-                            [xs_copy = xs](const int x) {
+                            [ys = xs](const int x) {
                                 return std::any_of(
-                                    xs_copy.cbegin(), xs_copy.cend(),
-                                    [x](const int y) {
+                                    ys.cbegin(), ys.cend(), [x](const int y) {
                                         return x % y == 0 && x / y > 1;
                                     });
                             }),
