@@ -1,8 +1,5 @@
 #include "sum_of_multiples.h"
 #include <algorithm>
-#include <functional>
-#include <numeric>
-#include <unordered_set>
 
 namespace {
 void remove_multiples_of_others(std::vector<int> &xs) {
