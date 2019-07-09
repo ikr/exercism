@@ -1,17 +1,17 @@
 #include "etl.h"
 #include <locale>
 
-namespace {
-const std::locale &locale() {
-    static std::locale l{};
-    return l;
-}
-
-char to_lower(const char c) { return std::tolower(c, locale()); }
-} // namespace
-
 namespace etl {
 std::map<char, int> transform(const std::map<int, std::vector<char>> &old) {
-    return {};
+    static std::locale loc{};
+    std::map<char, int> ans;
+
+    for (const auto kv : old) {
+        for (const auto &v : kv.second) {
+            ans[std::tolower(v, loc)] = kv.first;
+        }
+    }
+
+    return ans;
 }
 } // namespace etl
