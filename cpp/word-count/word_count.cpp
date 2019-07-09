@@ -14,15 +14,12 @@ std::string to_lower(std::string s) {
 
 namespace word_count {
 std::map<std::string, int> words(const std::string &phrase) {
-    std::regex word_regex{"(o')?[a-zA-Z0-9]+('t|'s)?"};
-
-    auto words_begin =
-        std::sregex_iterator(phrase.cbegin(), phrase.cend(), word_regex);
-
-    auto words_end = std::sregex_iterator();
     std::map<std::string, int> ans;
+    std::regex word_regex{"(o')?[\\w]+('t|'s)?"};
 
-    for (auto it = words_begin; it != words_end; ++it) {
+    for (auto it =
+             std::sregex_iterator(phrase.cbegin(), phrase.cend(), word_regex);
+         it != std::sregex_iterator(); ++it) {
         ++ans[to_lower(it->str())];
     }
 
