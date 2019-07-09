@@ -3,7 +3,7 @@
 
 namespace etl {
 std::map<char, int> transform(const std::map<int, std::vector<char>> &old) {
-    static std::locale loc{};
+    static const std::locale loc{};
     std::map<char, int> ans;
 
     for (const auto &kv : old) {

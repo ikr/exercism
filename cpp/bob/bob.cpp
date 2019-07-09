@@ -4,7 +4,7 @@
 
 namespace {
 const std::locale &locale() {
-    static std::locale l{};
+    static const std::locale l{};
     return l;
 }
 

@@ -13,7 +13,6 @@ TEST_CASE("counts_one_word")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("counts_one_of_each")
 {
     const map<string, int> expected{{"one", 1}, {"of", 1}, {"each", 1}};
@@ -116,4 +115,3 @@ TEST_CASE("with_apostrophes_as_quotes")
 
     REQUIRE(expected == actual);
 }
-#endif
