@@ -3,18 +3,13 @@
 #include <locale>
 
 namespace {
-const std::locale &locale() {
-    static const std::locale l{};
-    return l;
-}
-
-bool is_letter(const char c) { return std::isalpha(c, locale()); }
-bool is_space(const char c) { return std::isspace(c, locale()); }
+bool is_letter(const char c) { return std::isalpha(c, std::locale::classic()); }
+bool is_space(const char c) { return std::isspace(c, std::locale::classic()); }
 bool is_upper_or_nor_leter(const char c) {
-    return std::isupper(c, locale()) || !is_letter(c);
+    return std::isupper(c, std::locale::classic()) || !is_letter(c);
 }
 
-bool is_silence(std::string phrase) {
+bool is_silence(const std::string &phrase) {
     return all_of(phrase.begin(), phrase.end(), is_space);
 }
 
