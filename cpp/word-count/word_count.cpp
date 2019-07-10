@@ -15,7 +15,7 @@ std::string to_lower(std::string s) {
 namespace word_count {
 std::map<std::string, int> words(const std::string &phrase) {
     std::map<std::string, int> ans;
-    std::regex word_regex{"(o')?[\\w]+('t|'s)?"};
+    std::regex word_regex("([a-z]')?\\w+('[a-z])?", std::regex_constants::icase);
 
     for (auto it =
              std::sregex_iterator(phrase.cbegin(), phrase.cend(), word_regex);
