@@ -82,7 +82,6 @@ TEST_CASE("_625_yields_5_5_5_5")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("_901255_yields_5_17_23_461")
 {
     const std::vector<int> expected{5, 17, 23, 461};
@@ -91,4 +90,21 @@ TEST_CASE("_901255_yields_5_17_23_461")
 
     REQUIRE(expected == actual);
 }
-#endif
+
+TEST_CASE("_461_yields_461")
+{
+    const std::vector<int> expected{461};
+
+    const std::vector<int> actual{prime_factors::of(461)};
+
+    REQUIRE(expected == actual);
+}
+
+TEST_CASE("_23757_yields_3_7919")
+{
+    const std::vector<int> expected{3, 7919};
+
+    const std::vector<int> actual{prime_factors::of(23757)};
+
+    REQUIRE(expected == actual);
+}
