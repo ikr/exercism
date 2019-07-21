@@ -3,8 +3,7 @@
 
 namespace {
 int first_prime_larger_than(const int x) {
-    static std::vector<int> primes{2,  3,  5,  7,  11, 13, 17,
-                                   19, 23, 29, 31, 37, 41};
+    static std::vector<int> primes{2, 3, 5, 7, 11, 13, 17};
     const auto it = std::upper_bound(primes.cbegin(), primes.cend(), x);
     if (it != primes.cend()) return *it;
 
