@@ -108,3 +108,12 @@ TEST_CASE("_23757_yields_3_7919")
 
     REQUIRE(expected == actual);
 }
+
+TEST_CASE("_30971726_yields_2_15485863")
+{
+    const std::vector<int> expected{2, 15485863};
+
+    const std::vector<int> actual{prime_factors::of(30971726)};
+
+    REQUIRE(expected == actual);
+}
