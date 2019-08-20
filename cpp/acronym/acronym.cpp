@@ -6,7 +6,7 @@
 namespace acronym {
 std::string acronym(const std::string &text) {
     std::string result;
-    std::regex word_pattern{"[[:alpha:]]+"};
+    const std::regex word_pattern{"[[:alpha:]]+"};
 
     std::transform(
         std::sregex_token_iterator(text.cbegin(), text.cend(), word_pattern),
