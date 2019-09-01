@@ -5,7 +5,7 @@
 
 namespace allergies {
 struct allergy_test final {
-    allergy_test(const unsigned int code);
+    explicit allergy_test(const unsigned int code);
     bool is_allergic_to(const std::string &substance) const;
     std::unordered_set<std::string> get_allergies() const;
 
