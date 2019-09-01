@@ -2,16 +2,15 @@
 
 namespace binary {
 unsigned int convert(const std::string &bin_num) {
-    unsigned int multiplier = 1;
     unsigned int answer = 0;
 
-    for (auto it = bin_num.crbegin(); it != bin_num.crend(); ++it) {
-        if (*it == '1')
-            answer += multiplier;
-        else if (*it != '0')
-            return 0;
+    for (const char digit : bin_num) {
+        answer *= 2;
 
-        multiplier *= 2;
+        if (digit == '1')
+            ++answer;
+        else if (digit != '0')
+            return 0;
     }
 
     return answer;
