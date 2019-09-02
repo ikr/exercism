@@ -14,7 +14,7 @@ unsigned int convert(const std::string &hex_literal) {
 
     for (const auto hex_digit : hex_literal) {
         if (hex_digit != '0' && !decimal_value(hex_digit)) return 0U;
-        answer = answer * 16 + decimal_value(hex_digit);
+        answer = answer * 16U + decimal_value(hex_digit);
     }
 
     return answer;
