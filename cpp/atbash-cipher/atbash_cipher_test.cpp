@@ -42,7 +42,6 @@ TEST_CASE("encode_all_the_letters")
                         atbash::encode("The quick brown fox jumps over the lazy dog."));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("decode_exercism")
 {
     REQUIRE("exercism" == atbash::decode("vcvix rhn"));
@@ -64,4 +63,3 @@ TEST_CASE("decode_all_the_letters")
     REQUIRE("thequickbrownfoxjumpsoverthelazydog" ==
                         atbash::decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"));
 }
-#endif
