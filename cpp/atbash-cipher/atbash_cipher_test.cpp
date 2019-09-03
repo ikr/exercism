@@ -26,7 +26,6 @@ TEST_CASE("encode_mindblowingly")
     REQUIRE("nrmwy oldrm tob" == atbash::encode("mindblowingly"));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("encode_numbers")
 {
     REQUIRE("gvhgr mt123 gvhgr mt" == atbash::encode("Testing,1 2 3, testing."));
@@ -43,6 +42,7 @@ TEST_CASE("encode_all_the_letters")
                         atbash::encode("The quick brown fox jumps over the lazy dog."));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("decode_exercism")
 {
     REQUIRE("exercism" == atbash::decode("vcvix rhn"));
