@@ -37,5 +37,4 @@ unsigned int score(const std::string &word) {
                    one_letter_score);
     return std::accumulate(letter_scores.cbegin(), letter_scores.cend(), 0);
 }
-
 } // namespace scrabble_score
