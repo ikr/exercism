@@ -22,7 +22,7 @@ const std::map<char, unsigned int> scores_by_uppercased_letter = {
 
     {'Q', 10}, {'Z', 10}};
 
-unsigned int letter_score(const char letter) {
+unsigned int one_letter_score(const char letter) {
     const char uppercased = std::toupper(letter, std::locale::classic());
     return scores_by_uppercased_letter.count(uppercased)
                ? scores_by_uppercased_letter.at(uppercased)
@@ -34,7 +34,7 @@ namespace scrabble_score {
 unsigned int score(const std::string &word) {
     std::vector<unsigned int> letter_scores(word.size());
     std::transform(word.cbegin(), word.cend(), letter_scores.begin(),
-                   letter_score);
+                   one_letter_score);
     return std::accumulate(letter_scores.cbegin(), letter_scores.cend(), 0);
 }
 
