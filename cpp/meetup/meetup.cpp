@@ -6,10 +6,11 @@ boost::gregorian::date firsteenth(const boost::gregorian::greg_month &month,
     return boost::gregorian::date{year, month, 13};
 }
 
-boost::gregorian::date teenth(const boost::gregorian::date &firsteenth,
-                              const boost::gregorian::greg_weekday &dow) {
+boost::gregorian::date
+teenth(const boost::gregorian::date &firsteenth,
+       const boost::gregorian::greg_weekday &day_of_week) {
     boost::gregorian::date day{firsteenth};
-    while (day.day_of_week() != dow)
+    while (day.day_of_week() != day_of_week)
         day = day + boost::gregorian::date_duration{1};
     return day;
 }
