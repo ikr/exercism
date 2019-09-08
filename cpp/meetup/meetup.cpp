@@ -65,4 +65,34 @@ boost::gregorian::date scheduler::first_monday() const {
     return closest_weekday_day(first_day(m_month, m_year),
                                boost::gregorian::Monday);
 }
+
+boost::gregorian::date scheduler::first_tuesday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Tuesday);
+}
+
+boost::gregorian::date scheduler::first_wednesday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Wednesday);
+}
+
+boost::gregorian::date scheduler::first_thursday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Thursday);
+}
+
+boost::gregorian::date scheduler::first_friday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Friday);
+}
+
+boost::gregorian::date scheduler::first_saturday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Saturday);
+}
+
+boost::gregorian::date scheduler::first_sunday() const {
+    return closest_weekday_day(first_day(m_month, m_year),
+                               boost::gregorian::Sunday);
+}
 } // namespace meetup

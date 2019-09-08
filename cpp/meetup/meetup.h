@@ -17,6 +17,12 @@ struct scheduler final {
     boost::gregorian::date sunteenth() const;
 
     boost::gregorian::date first_monday() const;
+    boost::gregorian::date first_tuesday() const;
+    boost::gregorian::date first_wednesday() const;
+    boost::gregorian::date first_thursday() const;
+    boost::gregorian::date first_friday() const;
+    boost::gregorian::date first_saturday() const;
+    boost::gregorian::date first_sunday() const;
 
 private:
     const boost::gregorian::greg_month m_month;
