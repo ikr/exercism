@@ -19,12 +19,7 @@ closest_nth_weekday_day(const boost::gregorian::date &first,
     while (day.day_of_week() != day_of_week)
         day = day + boost::gregorian::date_duration{1};
 
-    unsigned int count = 1;
-    while (count != n) {
-        day = day + boost::gregorian::date_duration{7};
-        ++count;
-    }
-
+    day = day + boost::gregorian::date_duration{7 * (n - 1)};
     return day;
 }
 } // namespace
