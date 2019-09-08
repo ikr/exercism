@@ -27,8 +27,7 @@ boost::gregorian::date
 last_weeekday_day(const boost::gregorian::greg_month &month,
                   const unsigned int year,
                   const boost::gregorian::greg_weekday &day_of_week) {
-    boost::gregorian::date day{
-        boost::gregorian::date{year, month, 1}.end_of_month()};
+    boost::gregorian::date day{first_day(month, year).end_of_month()};
 
     while (day.day_of_week() != day_of_week)
         day = day - boost::gregorian::date_duration{1};
