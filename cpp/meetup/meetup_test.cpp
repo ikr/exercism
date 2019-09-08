@@ -280,7 +280,6 @@ TEST_CASE("first_Sunday_of_April_2013")
     REQUIRE(expected == meetup.first_sunday());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("second_Monday_of_March_2013")
 {
     const meetup::scheduler meetup{boost::gregorian::Mar, 2013};
@@ -393,6 +392,7 @@ TEST_CASE("second_Sunday_of_April_2013")
     REQUIRE(expected == meetup.second_sunday());
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("third_Monday_of_March_2013")
 {
     const meetup::scheduler meetup{boost::gregorian::Mar, 2013};

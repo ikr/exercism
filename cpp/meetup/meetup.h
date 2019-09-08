@@ -24,7 +24,15 @@ struct scheduler final {
     boost::gregorian::date first_saturday() const;
     boost::gregorian::date first_sunday() const;
 
-private:
+    boost::gregorian::date second_monday() const;
+    boost::gregorian::date second_tuesday() const;
+    boost::gregorian::date second_wednesday() const;
+    boost::gregorian::date second_thursday() const;
+    boost::gregorian::date second_friday() const;
+    boost::gregorian::date second_saturday() const;
+    boost::gregorian::date second_sunday() const;
+
+  private:
     const boost::gregorian::greg_month m_month;
     const unsigned int m_year;
 };
