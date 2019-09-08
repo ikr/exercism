@@ -22,4 +22,24 @@ boost::gregorian::date scheduler::monteenth() const {
 boost::gregorian::date scheduler::tuesteenth() const {
     return teenth(m_firsteenth, boost::gregorian::Tuesday);
 }
+
+boost::gregorian::date scheduler::wednesteenth() const {
+    return teenth(m_firsteenth, boost::gregorian::Wednesday);
+}
+
+boost::gregorian::date scheduler::thursteenth() const {
+    return teenth(m_firsteenth, boost::gregorian::Thursday);
+}
+
+boost::gregorian::date scheduler::friteenth() const {
+    return teenth(m_firsteenth, boost::gregorian::Friday);
+}
+
+boost::gregorian::date scheduler::saturteenth() const {
+    return teenth(m_firsteenth, boost::gregorian::Saturday);
+}
+
+boost::gregorian::date scheduler::sunteenth() const {
+    return teenth(m_firsteenth, boost::gregorian::Sunday);
+}
 } // namespace meetup

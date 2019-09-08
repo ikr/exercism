@@ -10,6 +10,11 @@ struct scheduler final {
 
     boost::gregorian::date monteenth() const;
     boost::gregorian::date tuesteenth() const;
+    boost::gregorian::date wednesteenth() const;
+    boost::gregorian::date thursteenth() const;
+    boost::gregorian::date friteenth() const;
+    boost::gregorian::date saturteenth() const;
+    boost::gregorian::date sunteenth() const;
 
   private:
     const boost::gregorian::date m_firsteenth;
