@@ -173,4 +173,39 @@ boost::gregorian::date scheduler::third_sunday() const {
     return closest_nth_weekday_day(first_day(m_month, m_year),
                                    boost::gregorian::Sunday, 3);
 }
+
+boost::gregorian::date scheduler::fourth_monday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Monday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_tuesday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Tuesday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_wednesday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Wednesday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_thursday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Thursday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_friday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Friday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_saturday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Saturday, 4);
+}
+
+boost::gregorian::date scheduler::fourth_sunday() const {
+    return closest_nth_weekday_day(first_day(m_month, m_year),
+                                   boost::gregorian::Sunday, 4);
+}
 } // namespace meetup
