@@ -17,7 +17,8 @@ struct scheduler final {
     boost::gregorian::date sunteenth() const;
 
   private:
-    const boost::gregorian::date m_firsteenth;
+    const boost::gregorian::greg_month m_month;
+    const unsigned int m_year;
 };
 } // namespace meetup
 
