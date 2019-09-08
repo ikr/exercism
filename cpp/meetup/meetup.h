@@ -16,7 +16,9 @@ struct scheduler final {
     boost::gregorian::date saturteenth() const;
     boost::gregorian::date sunteenth() const;
 
-  private:
+    boost::gregorian::date first_monday() const;
+
+private:
     const boost::gregorian::greg_month m_month;
     const unsigned int m_year;
 };
