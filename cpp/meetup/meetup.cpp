@@ -1,6 +1,8 @@
 #include "meetup.h"
 
 namespace {
+const boost::gregorian::date_duration one_day{1};
+
 boost::gregorian::date firsteenth(const boost::gregorian::greg_month &month,
                                   const unsigned int year) {
     return boost::gregorian::date{year, month, 13};
@@ -16,9 +18,7 @@ closest_nth_weekday_day(const boost::gregorian::date &first,
                         const boost::gregorian::greg_weekday &day_of_week,
                         const unsigned int n) {
     boost::gregorian::date day{first};
-    while (day.day_of_week() != day_of_week)
-        day = day + boost::gregorian::date_duration{1};
-
+    while (day.day_of_week() != day_of_week) day = day + one_day;
     day = day + boost::gregorian::date_duration{7 * (n - 1)};
     return day;
 }
@@ -28,10 +28,7 @@ last_weeekday_day(const boost::gregorian::greg_month &month,
                   const unsigned int year,
                   const boost::gregorian::greg_weekday &day_of_week) {
     boost::gregorian::date day{first_day(month, year).end_of_month()};
-
-    while (day.day_of_week() != day_of_week)
-        day = day - boost::gregorian::date_duration{1};
-
+    while (day.day_of_week() != day_of_week) day = day - one_day;
     return day;
 }
 } // namespace
