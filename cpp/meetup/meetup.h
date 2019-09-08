@@ -5,12 +5,14 @@
 
 namespace meetup {
 struct scheduler final {
-    scheduler(const boost::gregorian::greg_month month,
+    scheduler(const boost::gregorian::greg_month &month,
               const unsigned int year);
+
     boost::gregorian::date monteenth() const;
+    boost::gregorian::date tuesteenth() const;
 
   private:
-    const boost::gregorian::date m_firsteen;
+    const boost::gregorian::date m_firsteenth;
 };
 } // namespace meetup
 
