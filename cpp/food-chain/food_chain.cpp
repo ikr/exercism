@@ -24,7 +24,6 @@ const std::vector<Object> chain_definition{
 namespace food_chain {
 std::string verse(const unsigned int verse_num) {
     assert(0U < verse_num && verse_num <= chain_definition.size());
-
     const auto obj = chain_definition.at(verse_num - 1);
 
     std::stringstream result;
