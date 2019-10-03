@@ -4,7 +4,7 @@
 #include <string>
 
 namespace scrabble_score {
-unsigned int score(const std::string &word);
+int score(const std::string &word);
 }
 
 #endif // SCRABBLE_SCORE_H

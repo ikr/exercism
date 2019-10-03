@@ -1,12 +1,10 @@
 #include "scrabble_score.h"
-#include <algorithm>
 #include <locale>
-#include <map>
 #include <numeric>
-#include <vector>
+#include <unordered_map>
 
 namespace {
-const std::map<char, unsigned int> scores_by_uppercased_letter = {
+const std::unordered_map<char, int> scores_by_uppercased_letter = {
     {'A', 1},  {'E', 1}, {'I', 1}, {'O', 1}, {'U', 1},
     {'L', 1},  {'N', 1}, {'R', 1}, {'S', 1}, {'T', 1},
 
@@ -22,7 +20,7 @@ const std::map<char, unsigned int> scores_by_uppercased_letter = {
 
     {'Q', 10}, {'Z', 10}};
 
-unsigned int one_letter_score(const char letter) {
+int one_letter_score(const char letter) {
     const char uppercased = std::toupper(letter, std::locale::classic());
     return scores_by_uppercased_letter.count(uppercased)
                ? scores_by_uppercased_letter.at(uppercased)
@@ -31,10 +29,10 @@ unsigned int one_letter_score(const char letter) {
 } // namespace
 
 namespace scrabble_score {
-unsigned int score(const std::string &word) {
-    std::vector<unsigned int> letter_scores(word.size());
-    std::transform(word.cbegin(), word.cend(), letter_scores.begin(),
-                   one_letter_score);
-    return std::accumulate(letter_scores.cbegin(), letter_scores.cend(), 0);
+int score(const std::string &word) {
+    return std::accumulate(word.cbegin(), word.cend(), 0,
+                           [](const int sum, const char letter) {
+                               return sum + one_letter_score(letter);
+                           });
 }
 } // namespace scrabble_score
