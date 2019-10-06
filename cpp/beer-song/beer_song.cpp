@@ -49,12 +49,10 @@ std::string verse(const int count) {
 
 std::string sing(const int from_count, const int to_count) {
     std::stringstream result;
-
     for (int i = from_count; i >= to_count; --i) {
         result << verse(i);
         if (i != to_count) result << '\n';
     }
-
     return result.str();
 }
 } // namespace beer_song
