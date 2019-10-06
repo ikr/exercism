@@ -90,7 +90,6 @@ TEST_CASE("cow")
     REQUIRE(expected == food_chain::verse(7));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("horse")
 {
     string expected = "I know an old lady who swallowed a horse.\n"
@@ -99,6 +98,7 @@ TEST_CASE("horse")
     REQUIRE(expected == food_chain::verse(8));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("multiple_verses")
 {
     string expected =

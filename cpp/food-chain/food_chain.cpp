@@ -47,7 +47,10 @@ std::string verse(const int last_obj_num) {
         result << ".\n";
     }
 
-    result << "I don't know why she swallowed the fly. Perhaps she'll die.\n";
+    if (obj_idx) {
+        result
+            << "I don't know why she swallowed the fly. Perhaps she'll die.\n";
+    }
 
     return result.str();
 }
