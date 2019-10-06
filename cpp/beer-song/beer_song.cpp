@@ -1,9 +1,15 @@
 #include "beer_song.h"
+#include <locale>
 #include <sstream>
 
 namespace {
 std::string pronoun(const int count) { return count == 1 ? "it" : "one"; }
-std::string capitalize(const std::string &s) { return s; }
+
+std::string capitalize(std::string s) {
+    if (!s.length()) return s;
+    s[0] = std::toupper(s[0], std::locale::classic());
+    return s;
+}
 
 std::string bottles_of_beer(const int count) {
     const auto quantity{count ? std::to_string(count) : std::string{"no more"}};
