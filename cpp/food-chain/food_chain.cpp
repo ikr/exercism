@@ -53,15 +53,12 @@ std::string build_chain(const int obj_idx) {
 } // namespace
 
 namespace food_chain {
-std::string verse(const int last_obj_num) {
-    assert(0 < last_obj_num &&
-           last_obj_num <= static_cast<int>(chain_definition.size()));
-
+std::string verse(const unsigned int last_obj_num) {
+    assert(0 < last_obj_num && last_obj_num <= chain_definition.size());
     const int obj_idx = last_obj_num % chain_definition.size();
-
-    std::stringstream result;
     const auto obj = chain_definition.at(obj_idx);
 
+    std::stringstream result;
     result << "I know an old lady who swallowed a " << obj.name << ".\n"
            << verse_closing_line(obj) << build_chain(obj_idx);
 
