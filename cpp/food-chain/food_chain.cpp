@@ -14,7 +14,11 @@ struct Object {
 const std::vector<Object> chain_definition{
     {"fly", "", ""},
     {"spider", "wriggled and jiggled and tickled inside her", ""},
-    {"bird", "", "How absurd to swallow a bird!"}};
+    {"bird", "", "How absurd to swallow a bird!"},
+    {"cat", "", "Imagine that, to swallow a cat!"},
+    {"dog", "", "What a hog, to swallow a dog!"},
+    {"goat", "", "Just opened her throat and swallowed a goat!"},
+    {"cow", "", "I don't know how she swallowed a cow!"}};
 } // namespace
 
 namespace food_chain {
