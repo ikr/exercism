@@ -21,7 +21,6 @@ TEST_CASE("spider")
     REQUIRE(expected == food_chain::verse(2));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("bird")
 {
     string expected = "I know an old lady who swallowed a bird.\n"
@@ -33,6 +32,7 @@ TEST_CASE("bird")
     REQUIRE(expected == food_chain::verse(3));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("cat")
 {
     string expected = "I know an old lady who swallowed a cat.\n"

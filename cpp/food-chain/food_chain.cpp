@@ -13,7 +13,8 @@ struct Object {
 
 const std::vector<Object> chain_definition{
     {"fly", "", ""},
-    {"spider", "wriggled and jiggled and tickled inside her", ""}};
+    {"spider", "wriggled and jiggled and tickled inside her", ""},
+    {"bird", "", "How absurd to swallow a bird!"}};
 } // namespace
 
 namespace food_chain {
@@ -33,8 +34,10 @@ std::string verse(const int last_obj_num) {
     for (int i = last_obj_num; i > 1; --i) {
         const auto a = chain_definition.at(i - 1);
         const auto b = chain_definition.at(i - 2);
-        result << "She swallowed the " << obj.name << " to catch the " << b.name
-               << ".\n";
+
+        result << "She swallowed the " << a.name << " to catch the " << b.name;
+        if (b.addendum.length()) result << " that " << b.addendum;
+        result << ".\n";
     }
 
     result << "I don't know why she swallowed the fly. Perhaps she'll die.\n";
