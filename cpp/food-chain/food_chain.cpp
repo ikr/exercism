@@ -12,6 +12,7 @@ struct Object {
 };
 
 const std::vector<Object> chain_definition{
+    {"horse", "", "She's dead, of course!"},
     {"fly", "", ""},
     {"spider", "wriggled and jiggled and tickled inside her", ""},
     {"bird", "", "How absurd to swallow a bird!"},
@@ -26,8 +27,10 @@ std::string verse(const int last_obj_num) {
     assert(0 < last_obj_num &&
            last_obj_num <= static_cast<int>(chain_definition.size()));
 
+    const int obj_idx = last_obj_num % chain_definition.size();
+
     std::stringstream result;
-    const auto obj = chain_definition.at(last_obj_num - 1);
+    const auto obj = chain_definition.at(obj_idx);
     result << "I know an old lady who swallowed a " << obj.name << ".\n";
 
     if (obj.addendum.length())
@@ -35,9 +38,9 @@ std::string verse(const int last_obj_num) {
     else if (obj.judgement.length())
         result << obj.judgement << "\n";
 
-    for (int i = last_obj_num; i > 1; --i) {
-        const auto a = chain_definition.at(i - 1);
-        const auto b = chain_definition.at(i - 2);
+    for (int i = obj_idx; i > 1; --i) {
+        const auto a = chain_definition.at(i);
+        const auto b = chain_definition.at(i - 1);
 
         result << "She swallowed the " << a.name << " to catch the " << b.name;
         if (b.addendum.length()) result << " that " << b.addendum;
