@@ -20,6 +20,17 @@ const std::vector<Object> chain_definition{
     {"dog", "", "What a hog, to swallow a dog!"},
     {"goat", "", "Just opened her throat and swallowed a goat!"},
     {"cow", "", "I don't know how she swallowed a cow!"}};
+
+std::string verse_closing_line(const Object &obj) {
+    std::stringstream result;
+
+    if (obj.addendum.length())
+        result << "It " << obj.addendum << ".\n";
+    else
+        result << obj.judgment << "\n";
+
+    return result.str();
+}
 } // namespace
 
 namespace food_chain {
@@ -31,23 +42,24 @@ std::string verse(const int last_obj_num) {
 
     std::stringstream result;
     const auto obj = chain_definition.at(obj_idx);
-    result << "I know an old lady who swallowed a " << obj.name << ".\n";
 
-    if (obj.addendum.length())
-        result << "It " << obj.addendum << ".\n";
-    else if (obj.judgment.length() && obj_idx != 1)
-        result << obj.judgment << "\n";
+    result << "I know an old lady who swallowed a " << obj.name << ".\n"
+           << verse_closing_line(obj);
 
-    for (int i = obj_idx; i > 1; --i) {
-        const auto a = chain_definition.at(i);
-        const auto b = chain_definition.at(i - 1);
+    if (obj_idx > 1) {
+        for (int i = obj_idx; i > 1; --i) {
+            const auto a = chain_definition.at(i);
+            const auto b = chain_definition.at(i - 1);
 
-        result << "She swallowed the " << a.name << " to catch the " << b.name;
-        if (b.addendum.length()) result << " that " << b.addendum;
-        result << ".\n";
+            result << "She swallowed the " << a.name << " to catch the "
+                   << b.name;
+            if (b.addendum.length()) result << " that " << b.addendum;
+            result << ".\n";
+        }
+
+        result << verse_closing_line(chain_definition.at(1));
     }
 
-    if (obj_idx) result << chain_definition[1].judgment << "\n";
     return result.str();
 }
 } // namespace food_chain
