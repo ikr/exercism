@@ -27,7 +27,6 @@ TEST_CASE("handles_0_bottles")
     REQUIRE(expected == beer_song::verse(0));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("sings_several_verses")
 {
     string expected = "8 bottles of beer on the wall, 8 bottles of beer.\n"
@@ -58,4 +57,3 @@ TEST_CASE("sings_the_rest_of_the_verses")
 
     REQUIRE(expected == beer_song::sing(3));
 }
-#endif
