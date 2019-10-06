@@ -53,9 +53,9 @@ std::string build_chain(const int obj_idx) {
 } // namespace
 
 namespace food_chain {
-std::string verse(const unsigned int last_obj_num) {
-    assert(0 < last_obj_num && last_obj_num <= chain_definition.size());
-    const int obj_idx = last_obj_num % chain_definition.size();
+std::string verse(const unsigned int verse_num) {
+    assert(0 < verse_num && verse_num <= chain_definition.size());
+    const int obj_idx = verse_num % chain_definition.size();
     const auto obj = chain_definition.at(obj_idx);
 
     std::stringstream result;
