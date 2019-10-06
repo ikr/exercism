@@ -1,6 +1,6 @@
 #include "food_chain.h"
 #include <cassert>
-#include <set>
+#include <numeric>
 #include <sstream>
 #include <vector>
 
@@ -34,7 +34,6 @@ std::string verse_closing_line(const Object &obj) {
 
 std::string build_chain(const int obj_idx) {
     if (obj_idx == 1) return "";
-
     std::stringstream result;
 
     for (int i = obj_idx; i > 1; --i) {
@@ -47,7 +46,6 @@ std::string build_chain(const int obj_idx) {
     }
 
     if (obj_idx) result << verse_closing_line(chain_definition.at(1));
-
     return result.str();
 }
 } // namespace
@@ -63,5 +61,16 @@ std::string verse(const unsigned int verse_num) {
            << verse_closing_line(obj) << build_chain(obj_idx);
 
     return result.str();
+}
+
+std::string verses(const unsigned int from_num, const unsigned int to_num) {
+    assert(from_num <= to_num);
+
+    std::vector<int> nums(to_num - from_num + 1);
+    std::iota(nums.begin(), nums.end(), from_num);
+    return std::accumulate(nums.cbegin(), nums.cend(), std::string{},
+                           [](const std::string &acc, const int obj_idx) {
+                               return acc + verse(obj_idx) + "\n";
+                           });
 }
 } // namespace food_chain

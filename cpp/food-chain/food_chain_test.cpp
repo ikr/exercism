@@ -98,7 +98,6 @@ TEST_CASE("horse")
     REQUIRE(expected == food_chain::verse(8));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("multiple_verses")
 {
     string expected =
@@ -114,6 +113,7 @@ TEST_CASE("multiple_verses")
     REQUIRE(expected == food_chain::verses(1, 2));
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("the_whole_song")
 {
     REQUIRE(food_chain::verses(1, 8) == food_chain::sing());
