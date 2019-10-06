@@ -22,14 +22,8 @@ const std::vector<Object> chain_definition{
     {"cow", "", "I don't know how she swallowed a cow!"}};
 
 std::string verse_closing_line(const Object &obj) {
-    std::stringstream result;
-
-    if (obj.addendum.length())
-        result << "It " << obj.addendum << ".\n";
-    else
-        result << obj.judgment << "\n";
-
-    return result.str();
+    return obj.addendum.length() ? "It " + obj.addendum + ".\n"
+                                 : obj.judgment + "\n";
 }
 
 std::string build_chain(const int obj_idx) {
@@ -65,7 +59,6 @@ std::string verse(const unsigned int verse_num) {
 
 std::string verses(const unsigned int from_num, const unsigned int to_num) {
     assert(from_num <= to_num);
-
     std::vector<int> nums(to_num - from_num + 1);
     std::iota(nums.begin(), nums.end(), from_num);
     return std::accumulate(nums.cbegin(), nums.cend(), std::string{},
