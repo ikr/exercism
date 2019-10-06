@@ -31,6 +31,25 @@ std::string verse_closing_line(const Object &obj) {
 
     return result.str();
 }
+
+std::string build_chain(const int obj_idx) {
+    if (obj_idx == 1) return "";
+
+    std::stringstream result;
+
+    for (int i = obj_idx; i > 1; --i) {
+        const auto a = chain_definition.at(i);
+        const auto b = chain_definition.at(i - 1);
+
+        result << "She swallowed the " << a.name << " to catch the " << b.name;
+        if (b.addendum.length()) result << " that " << b.addendum;
+        result << ".\n";
+    }
+
+    if (obj_idx) result << verse_closing_line(chain_definition.at(1));
+
+    return result.str();
+}
 } // namespace
 
 namespace food_chain {
@@ -44,21 +63,7 @@ std::string verse(const int last_obj_num) {
     const auto obj = chain_definition.at(obj_idx);
 
     result << "I know an old lady who swallowed a " << obj.name << ".\n"
-           << verse_closing_line(obj);
-
-    if (obj_idx > 1) {
-        for (int i = obj_idx; i > 1; --i) {
-            const auto a = chain_definition.at(i);
-            const auto b = chain_definition.at(i - 1);
-
-            result << "She swallowed the " << a.name << " to catch the "
-                   << b.name;
-            if (b.addendum.length()) result << " that " << b.addendum;
-            result << ".\n";
-        }
-
-        result << verse_closing_line(chain_definition.at(1));
-    }
+           << verse_closing_line(obj) << build_chain(obj_idx);
 
     return result.str();
 }
