@@ -8,7 +8,7 @@ namespace {
 struct Object {
     std::string name;
     std::string addendum;
-    std::string judgement;
+    std::string judgment;
 };
 
 const std::vector<Object> chain_definition{
@@ -35,8 +35,8 @@ std::string verse(const int last_obj_num) {
 
     if (obj.addendum.length())
         result << "It " << obj.addendum << ".\n";
-    else if (obj.judgement.length() && obj_idx != 1)
-        result << obj.judgement << "\n";
+    else if (obj.judgment.length() && obj_idx != 1)
+        result << obj.judgment << "\n";
 
     for (int i = obj_idx; i > 1; --i) {
         const auto a = chain_definition.at(i);
@@ -47,7 +47,7 @@ std::string verse(const int last_obj_num) {
         result << ".\n";
     }
 
-    if (obj_idx) result << chain_definition[1].judgement << "\n";
+    if (obj_idx) result << chain_definition[1].judgment << "\n";
     return result.str();
 }
 } // namespace food_chain
