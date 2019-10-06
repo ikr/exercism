@@ -73,4 +73,6 @@ std::string verses(const unsigned int from_num, const unsigned int to_num) {
                                return acc + verse(obj_idx) + "\n";
                            });
 }
+
+std::string sing() { return verses(1, chain_definition.size()); }
 } // namespace food_chain
