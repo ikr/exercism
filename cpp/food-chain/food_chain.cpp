@@ -13,7 +13,7 @@ struct Object {
 
 const std::vector<Object> chain_definition{
     {"horse", "", "She's dead, of course!"},
-    {"fly", "", ""},
+    {"fly", "", "I don't know why she swallowed the fly. Perhaps she'll die."},
     {"spider", "wriggled and jiggled and tickled inside her", ""},
     {"bird", "", "How absurd to swallow a bird!"},
     {"cat", "", "Imagine that, to swallow a cat!"},
@@ -35,7 +35,7 @@ std::string verse(const int last_obj_num) {
 
     if (obj.addendum.length())
         result << "It " << obj.addendum << ".\n";
-    else if (obj.judgement.length())
+    else if (obj.judgement.length() && obj_idx != 1)
         result << obj.judgement << "\n";
 
     for (int i = obj_idx; i > 1; --i) {
@@ -47,11 +47,7 @@ std::string verse(const int last_obj_num) {
         result << ".\n";
     }
 
-    if (obj_idx) {
-        result
-            << "I don't know why she swallowed the fly. Perhaps she'll die.\n";
-    }
-
+    if (obj_idx) result << chain_definition[1].judgement << "\n";
     return result.str();
 }
 } // namespace food_chain
