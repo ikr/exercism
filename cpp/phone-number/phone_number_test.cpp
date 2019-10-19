@@ -74,7 +74,6 @@ TEST_CASE(
   REQUIRE_THROWS_AS(phone_number::phone_number("1 (023) 456-7890"), std::domain_error);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE(
     "invalid_if_area_code_starts_with_1_on_valid_11_digit_number") {
   REQUIRE_THROWS_AS(phone_number::phone_number("1 (123) 456-7890"), std::domain_error);
@@ -89,5 +88,3 @@ TEST_CASE(
     "invalid_if_exchange_code_starts_with_1_on_valid_11_digit_number") {
   REQUIRE_THROWS_AS(phone_number::phone_number("1 (223) 156-7890"), std::domain_error);
 }
-
-#endif
