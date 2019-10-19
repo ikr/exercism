@@ -22,7 +22,6 @@ Numeral max_divider(const int n) {
                 symbols_by_value.crbegin()->second};
 
     if (lbound->first == n) return {lbound->first, lbound->second};
-
     return {std::prev(lbound)->first, std::prev(lbound)->second};
 }
 } // namespace
@@ -30,7 +29,6 @@ Numeral max_divider(const int n) {
 namespace roman_numerals {
 std::string convert(int n) {
     assert(n > 0);
-
     std::string answer;
 
     while (n) {
