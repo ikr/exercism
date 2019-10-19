@@ -16,7 +16,6 @@ TEST_CASE("three_yields_III")
     REQUIRE("III" == roman_numerals::convert(3));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("four_yields_IV")
 {
     REQUIRE("IV" == roman_numerals::convert(4));
@@ -91,4 +90,3 @@ TEST_CASE("three_thousand_yields_MMM")
 {
     REQUIRE("MMM" == roman_numerals::convert(3000));
 }
-#endif

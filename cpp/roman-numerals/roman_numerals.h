@@ -4,7 +4,7 @@
 #include <string>
 
 namespace roman_numerals {
-std::string convert(const int n);
+std::string convert(int n);
 } // namespace roman_numerals
 
 #endif // ROMAN_NUMERALS_H
