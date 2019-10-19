@@ -1,15 +1,17 @@
 #include "phone_number.h"
+#include <algorithm>
 #include <locale>
-#include <numeric>
 
 namespace {
-std::string digits(const std::string &source) {
-    return std::accumulate(source.cbegin(), source.cend(), std::string{""},
-                           [](std::string agg, const char c) {
-                               if (std::isdigit(c, std::locale::classic()))
-                                   agg.append(1, c);
-                               return agg;
-                           });
+std::string digits(std::string source) {
+    source.erase(std::remove_if(source.begin(), source.end(),
+                                [](const char c) {
+                                    return !std::isdigit(
+                                        c, std::locale::classic());
+                                }),
+                 source.end());
+
+    return source;
 }
 } // namespace
 
