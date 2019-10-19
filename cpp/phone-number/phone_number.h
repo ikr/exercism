@@ -11,7 +11,7 @@ struct phone_number final {
     operator std::string() const;
 
   private:
-    std::string m_digits;
+    const std::string m_digits;
 };
 } // namespace phone_number
 
