@@ -25,14 +25,6 @@ Numeral max_divider(const int n) {
 
     return {std::prev(lbound)->first, std::prev(lbound)->second};
 }
-
-std::string repeat(const std::string &what, int times) {
-    assert(times >= 0);
-
-    std::string answer;
-    while (times--) answer += what;
-    return answer;
-}
 } // namespace
 
 namespace roman_numerals {
@@ -43,9 +35,8 @@ std::string convert(int n) {
 
     while (n) {
         const auto d = max_divider(n);
-        const auto m = n / d.value;
-        answer += repeat(d.symbol, m);
-        n -= m * d.value;
+        answer += d.symbol;
+        n -= d.value;
     }
 
     return answer;
