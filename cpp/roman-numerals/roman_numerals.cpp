@@ -17,11 +17,9 @@ struct Numeral final {
 Numeral max_divider(const int n) {
     const auto lbound = symbols_by_value.lower_bound(n);
 
-    if (lbound == symbols_by_value.cend())
-        return {symbols_by_value.crbegin()->first,
-                symbols_by_value.crbegin()->second};
+    if (lbound != symbols_by_value.cend() && lbound->first == n)
+        return {lbound->first, lbound->second};
 
-    if (lbound->first == n) return {lbound->first, lbound->second};
     return {std::prev(lbound)->first, std::prev(lbound)->second};
 }
 } // namespace
