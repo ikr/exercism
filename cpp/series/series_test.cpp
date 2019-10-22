@@ -49,7 +49,6 @@ TEST_CASE("can_slice_by_1")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("can_slice_by_2")
 {
     const vector<vector<int>> expected{{9, 8}, {8, 2}, {2, 7}, {7, 3}, {3, 4}, {4, 6}, {6, 3}};
@@ -94,7 +93,6 @@ TEST_CASE("can_slice_by_5")
 
     REQUIRE(expected == actual);
 }
-#endif
 
 TEST_CASE("domain_error_if_not_enough_digits_to_slice")
 {

@@ -17,15 +17,17 @@ vec digits(const std::string &source) {
 
 vvec slice(const std::string &source, const int window_size) {
     if (window_size <= 0 || window_size > static_cast<int>(source.size()))
-        throw std::domain_error("Window size x must be: 0 < x <= src_sz");
+        throw std::domain_error("Expected: 0 < window_size <= source_size");
 
     const vec ds = digits(source);
-    vvec answer(ds.size());
+    vvec answer;
 
-    std::transform(ds.cbegin(), ds.cend(), answer.begin(),
-                   [](const int d) { return vec{d}; });
+    for (auto first = ds.cbegin(), last = first + window_size;;
+         ++first, ++last) {
+        answer.push_back(vec{first, last});
+        if (last == ds.cend()) break;
+    }
 
     return answer;
 }
-
 } // namespace series
