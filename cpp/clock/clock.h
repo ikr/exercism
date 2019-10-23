@@ -5,7 +5,7 @@
 
 namespace date_independent {
 namespace clock {
-std::string at(const int hour, const int minute);
+std::string at(const int hours, const int minutes);
 } // namespace clock
 } // namespace date_independent
 
