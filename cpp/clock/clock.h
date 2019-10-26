@@ -9,6 +9,8 @@ struct Time final {
     explicit Time(const int minutes);
     explicit operator std::string() const;
     Time plus(const int minutes) const;
+    bool operator==(const Time &t) const;
+    bool operator!=(const Time &t) const;
 
   private:
     const int m_minutes;

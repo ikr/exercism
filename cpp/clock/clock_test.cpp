@@ -193,7 +193,6 @@ TEST_CASE("add_tests")
     }
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("equal_tests")
 {
     for (equalTest e : equalCases) {
@@ -210,4 +209,3 @@ TEST_CASE("equal_tests")
         }
     }
 }
-#endif
