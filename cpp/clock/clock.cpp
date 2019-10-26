@@ -1,4 +1,5 @@
 #include "clock.h"
+#include <cassert>
 #include <iomanip>
 #include <sstream>
 
@@ -9,7 +10,9 @@ constexpr int positive_mod(const int divider, const int x) {
 } // namespace
 
 namespace date_independent {
-Time::Time(const int minutes) : m_minutes(minutes) {}
+Time::Time(const int minutes) : m_minutes(minutes) {
+    assert(m_minutes >= 0 && "Expecting normalized total minutes");
+}
 
 Time::operator std::string() const {
     const int h = m_minutes / 60 % 24;
@@ -30,7 +33,8 @@ Time at(const int hours, const int minutes) {
     const int h =
         positive_mod(24, hours + minutes / 60) - (minutes % 60 < 0 ? 1 : 0);
     const int m = positive_mod(60, minutes);
-    return Time{h * 60 + m};
+    const int total_minutes = h * 60 + m;
+    return Time{total_minutes < 0 ? 24 * 60 + total_minutes : total_minutes };
 }
 } // namespace clock
 } // namespace date_independent
