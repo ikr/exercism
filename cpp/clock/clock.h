@@ -6,7 +6,7 @@
 namespace date_independent {
 
 struct Time final {
-    explicit Time(const int minutes);
+    explicit Time(const int normalized_total_minutes);
     explicit operator std::string() const;
     Time plus(const int minutes) const;
     bool operator==(const Time &t) const;

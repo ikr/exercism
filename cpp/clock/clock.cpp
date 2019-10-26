@@ -10,8 +10,9 @@ constexpr int positive_mod(const int divider, const int x) {
 } // namespace
 
 namespace date_independent {
-Time::Time(const int minutes) : m_minutes(minutes) {
-    assert(m_minutes >= 0 && "Expecting normalized total minutes");
+Time::Time(const int normalized_total_minutes)
+    : m_minutes(normalized_total_minutes) {
+    assert(m_minutes >= 0);
 }
 
 Time::operator std::string() const {
