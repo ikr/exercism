@@ -4,8 +4,18 @@
 #include <string>
 
 namespace date_independent {
+
+struct Time final {
+    explicit Time(const int minutes);
+    explicit operator std::string() const;
+    Time plus(const int minutes) const;
+
+  private:
+    const int m_minutes;
+};
+
 namespace clock {
-std::string at(const int hours, const int minutes);
+Time at(const int hours, const int minutes);
 } // namespace clock
 } // namespace date_independent
 

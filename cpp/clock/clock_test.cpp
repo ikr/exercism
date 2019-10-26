@@ -183,7 +183,6 @@ TEST_CASE("time_tests")
     }
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("add_tests")
 {
     for (addTest a : addCases) {
@@ -194,6 +193,7 @@ TEST_CASE("add_tests")
     }
 }
 
+#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("equal_tests")
 {
     for (equalTest e : equalCases) {
