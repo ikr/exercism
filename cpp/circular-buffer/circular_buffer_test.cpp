@@ -4,15 +4,14 @@
 
 // Circular-buffer exercise test case data version 1.2.0
 
-TEST_CASE("reading_empty_buffer_should_fail") 
+TEST_CASE("reading_empty_buffer_should_fail")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
     REQUIRE_THROWS_AS(buffer.read(), std::domain_error);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-TEST_CASE("can_read_an_item_just_written") 
+TEST_CASE("can_read_an_item_just_written")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -22,7 +21,7 @@ TEST_CASE("can_read_an_item_just_written")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("each_item_may_only_be_read_once") 
+TEST_CASE("each_item_may_only_be_read_once")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -34,7 +33,7 @@ TEST_CASE("each_item_may_only_be_read_once")
     REQUIRE_THROWS_AS(buffer.read(), std::domain_error);
 }
 
-TEST_CASE("items_are_read_in_the_order_they_are_written") 
+TEST_CASE("items_are_read_in_the_order_they_are_written")
 {
     circular_buffer::circular_buffer<int> buffer(2);
 
@@ -48,7 +47,7 @@ TEST_CASE("items_are_read_in_the_order_they_are_written")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("full_buffer_cant_be_written") 
+TEST_CASE("full_buffer_cant_be_written")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -56,7 +55,7 @@ TEST_CASE("full_buffer_cant_be_written")
     REQUIRE_THROWS_AS(buffer.write(2), std::domain_error);
 }
 
-TEST_CASE("a_read_frees_up_capacity_for_another_write") 
+TEST_CASE("a_read_frees_up_capacity_for_another_write")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -71,7 +70,7 @@ TEST_CASE("a_read_frees_up_capacity_for_another_write")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("read_position_is_maintained_even_across_multiple_writes") 
+TEST_CASE("read_position_is_maintained_even_across_multiple_writes")
 {
     circular_buffer::circular_buffer<int> buffer(3);
 
@@ -90,7 +89,7 @@ TEST_CASE("read_position_is_maintained_even_across_multiple_writes")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("items_cleared_out_of_buffer_cant_be_read") 
+TEST_CASE("items_cleared_out_of_buffer_cant_be_read")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -101,7 +100,7 @@ TEST_CASE("items_cleared_out_of_buffer_cant_be_read")
     REQUIRE_THROWS_AS(buffer.read(), std::domain_error);
 }
 
-TEST_CASE("clear_frees_up_capacity_for_another_write") 
+TEST_CASE("clear_frees_up_capacity_for_another_write")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -115,7 +114,7 @@ TEST_CASE("clear_frees_up_capacity_for_another_write")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("clear_does_nothing_on_empty_buffer") 
+TEST_CASE("clear_does_nothing_on_empty_buffer")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -127,7 +126,8 @@ TEST_CASE("clear_does_nothing_on_empty_buffer")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("overwrite_acts_like_write_on_non_full_buffer") 
+#if defined(EXERCISM_RUN_ALL_TESTS)
+TEST_CASE("overwrite_acts_like_write_on_non_full_buffer")
 {
     circular_buffer::circular_buffer<int> buffer(2);
 
@@ -142,7 +142,7 @@ TEST_CASE("overwrite_acts_like_write_on_non_full_buffer")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("overwrite_replaces_the_oldest_item_on_full_buffer") 
+TEST_CASE("overwrite_replaces_the_oldest_item_on_full_buffer")
 {
     circular_buffer::circular_buffer<int> buffer(2);
 
@@ -158,7 +158,7 @@ TEST_CASE("overwrite_replaces_the_oldest_item_on_full_buffer")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read") 
+TEST_CASE("overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_read")
 {
     circular_buffer::circular_buffer<int> buffer(3);
 
@@ -183,7 +183,7 @@ TEST_CASE("overwrite_replaces_the_oldest_item_remaining_in_buffer_following_a_re
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("full_buffer_cant_be_written_after_overwrite") 
+TEST_CASE("full_buffer_cant_be_written_after_overwrite")
 {
     circular_buffer::circular_buffer<int> buffer(1);
 
@@ -195,7 +195,7 @@ TEST_CASE("full_buffer_cant_be_written_after_overwrite")
     REQUIRE(expected == buffer.read());
 }
 
-TEST_CASE("check_correctness_with_string_type") 
+TEST_CASE("check_correctness_with_string_type")
 {
     circular_buffer::circular_buffer<std::string> buffer(3);
 
