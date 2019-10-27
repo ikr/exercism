@@ -8,9 +8,9 @@ namespace {
 using Transformer =
     std::function<std::vector<std::string>(std::vector<std::string>)>;
 
-Transformer make_append(const std::string &what) {
+Transformer make_append(const char *what) {
     return [what](std::vector<std::string> commands) {
-        commands.push_back(what);
+        commands.emplace_back(what);
         return commands;
     };
 }
