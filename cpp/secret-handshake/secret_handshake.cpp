@@ -25,7 +25,7 @@ static const std::vector<std::pair<unsigned int, Transformer>>
     bit_and_transformer_pairs{{0b1, make_append("wink")},
                               {0b10, make_append("double blink")},
                               {0b100, make_append("close your eyes")},
-                              {1000, make_append("jump")},
+                              {0b1000, make_append("jump")},
                               {0b10000, reverse}};
 } // namespace
 
