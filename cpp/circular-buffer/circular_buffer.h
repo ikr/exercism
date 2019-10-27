@@ -31,7 +31,7 @@ template <typename T> struct circular_buffer final {
         return result;
     }
 
-    void write(const T x) {
+    void write(const T &x) {
         if (std::all_of(m_elements.cbegin(), m_elements.cend(),
                         [](auto el) { return bool(el); }))
             throw std::domain_error("The buffer is full.");
@@ -45,6 +45,16 @@ template <typename T> struct circular_buffer final {
             m_idx_oldest = opt::Optional<int>{0};
 
         m_elements[i] = opt::Optional<T>{x};
+    }
+
+    void overwrite(const T &x) {
+        if (std::all_of(m_elements.cbegin(), m_elements.cend(),
+                        [](auto el) { return bool(el); })) {
+            m_elements[*m_idx_oldest] = opt::Optional<T>{x};
+            m_idx_oldest =
+                opt::Optional<int>{(*m_idx_oldest + 1) % m_elements.size()};
+        } else
+            write(x);
     }
 
     void clear() {

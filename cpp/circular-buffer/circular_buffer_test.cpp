@@ -126,7 +126,6 @@ TEST_CASE("clear_does_nothing_on_empty_buffer")
     REQUIRE(expected == buffer.read());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("overwrite_acts_like_write_on_non_full_buffer")
 {
     circular_buffer::circular_buffer<int> buffer(2);
@@ -240,4 +239,3 @@ TEST_CASE("initial_clear_does_not_affect_wrapping_around")
 
     REQUIRE_THROWS_AS(buffer.read(), std::domain_error);
 }
-#endif  // !EXERCISM_RUN_ALL_TESTS
