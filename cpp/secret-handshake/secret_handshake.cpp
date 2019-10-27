@@ -2,7 +2,8 @@
 #include <algorithm>
 #include <cassert>
 #include <functional>
-#include <map>
+#include <numeric>
+#include <utility>
 
 namespace {
 using Transformer =
@@ -20,17 +21,23 @@ std::vector<std::string> reverse(std::vector<std::string> commands) {
     return commands;
 }
 
-static const std::map<unsigned int, Transformer> transformations_by_bit{
-    {0b1, make_append("wink")},
-    {0b10, make_append("double blink")},
-    {0b100, make_append("close your eyes")},
-    {1000, make_append("jump")},
-    {0b10000, reverse}};
+static const std::vector<std::pair<unsigned int, Transformer>>
+    bit_and_transformer_pairs{{0b1, make_append("wink")},
+                              {0b10, make_append("double blink")},
+                              {0b100, make_append("close your eyes")},
+                              {1000, make_append("jump")},
+                              {0b10000, reverse}};
 } // namespace
 
 namespace secret_handshake {
 std::vector<std::string> commands(const unsigned int code) {
-    assert(code > 0);
-    return {"wink"};
+    return std::accumulate(bit_and_transformer_pairs.cbegin(),
+                           bit_and_transformer_pairs.cend(),
+                           std::vector<std::string>{},
+                           [code](auto agg, const auto bit_and_transformer) {
+                               return bit_and_transformer.first & code
+                                          ? (bit_and_transformer.second)(agg)
+                                          : agg;
+                           });
 }
 } // namespace secret_handshake
