@@ -13,7 +13,7 @@ template <typename T> struct circular_buffer final {
     circular_buffer(const int size) : m_elements(size) { assert(size > 0); }
 
     T read() {
-        if (!bool(m_idx_oldest)) throw std::domain_error("The buffer is empty");
+        if (!m_idx_oldest) throw std::domain_error("The buffer is empty");
 
         const T result = *m_elements[*m_idx_oldest];
         m_elements[*m_idx_oldest] = opt::nullopt;
@@ -22,10 +22,10 @@ template <typename T> struct circular_buffer final {
         m_idx_oldest = opt::nullopt;
 
         if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return !bool(el); }))
+                        [](auto el) { return !el; }))
             return result;
 
-        while (!bool(m_elements[i])) i = (i + 1) % m_elements.size();
+        while (!m_elements[i]) i = (i + 1) % m_elements.size();
         m_idx_oldest = opt::Optional<int>{i};
 
         return result;
@@ -33,14 +33,14 @@ template <typename T> struct circular_buffer final {
 
     void write(const T &x) {
         if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return bool(el); }))
+                        [](auto el) { return el; }))
             throw std::domain_error("The buffer is full.");
 
         int i = 0;
 
-        if (bool(m_idx_oldest)) {
+        if (m_idx_oldest) {
             i = *m_idx_oldest;
-            while (bool(m_elements[i])) i = (i + 1) % m_elements.size();
+            while (m_elements[i]) i = (i + 1) % m_elements.size();
         } else
             m_idx_oldest = opt::Optional<int>{0};
 
@@ -49,7 +49,7 @@ template <typename T> struct circular_buffer final {
 
     void overwrite(const T &x) {
         if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return bool(el); })) {
+                        [](auto el) { return el; })) {
             m_elements[*m_idx_oldest] = opt::Optional<T>{x};
             m_idx_oldest =
                 opt::Optional<int>{(*m_idx_oldest + 1) % m_elements.size()};
