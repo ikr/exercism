@@ -16,10 +16,10 @@ template <typename T> struct circular_buffer final {
         if (!bool(m_idx_oldest)) throw std::domain_error("The buffer is empty");
 
         const T result = *m_elements[*m_idx_oldest];
-        m_elements[*m_idx_oldest] = opt::Optional<T>{};
+        m_elements[*m_idx_oldest] = opt::nullopt;
 
         int i = *m_idx_oldest;
-        m_idx_oldest = opt::Optional<int>{};
+        m_idx_oldest = opt::nullopt;
 
         if (std::all_of(m_elements.cbegin(), m_elements.cend(),
                         [](auto el) { return !bool(el); }))
@@ -58,8 +58,8 @@ template <typename T> struct circular_buffer final {
     }
 
     void clear() {
-        std::fill(m_elements.begin(), m_elements.end(), opt::Optional<T>{});
-        m_idx_oldest = opt::Optional<int>{};
+        std::fill(m_elements.begin(), m_elements.end(), opt::nullopt);
+        m_idx_oldest = opt::nullopt;
     }
 
   private:
