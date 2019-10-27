@@ -1,6 +1,5 @@
 #include "secret_handshake.h"
 #include <algorithm>
-#include <cassert>
 #include <functional>
 #include <numeric>
 #include <utility>
