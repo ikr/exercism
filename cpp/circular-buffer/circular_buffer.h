@@ -4,7 +4,6 @@
 #include "Optional.h"
 #include <algorithm>
 #include <cassert>
-#include <optional>
 #include <vector>
 
 namespace circular_buffer {
