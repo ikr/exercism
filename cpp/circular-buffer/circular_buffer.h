@@ -31,10 +31,31 @@ template <typename T> struct circular_buffer final {
     }
 
     void write(const T &x) {
-        if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return el; }))
-            throw std::domain_error("The buffer is full.");
+        if (is_full()) throw std::domain_error("The buffer is full.");
+        positive_capacity_write(x);
+    }
 
+    void overwrite(const T &x) {
+        if (is_full()) {
+            m_elements[*m_idx_oldest] = opt::Optional<T>{x};
+            m_idx_oldest =
+                opt::Optional<int>{(*m_idx_oldest + 1) % m_elements.size()};
+        } else
+            positive_capacity_write(x);
+    }
+
+    void clear() {
+        std::fill(m_elements.begin(), m_elements.end(), opt::nullopt);
+        m_idx_oldest = opt::nullopt;
+    }
+
+  private:
+    bool is_full() const {
+        return std::all_of(m_elements.cbegin(), m_elements.cend(),
+                           [](auto el) { return el; });
+    }
+
+    void positive_capacity_write(const T &x) {
         int i = 0;
 
         if (m_idx_oldest) {
@@ -46,22 +67,6 @@ template <typename T> struct circular_buffer final {
         m_elements[i] = opt::Optional<T>{x};
     }
 
-    void overwrite(const T &x) {
-        if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return el; })) {
-            m_elements[*m_idx_oldest] = opt::Optional<T>{x};
-            m_idx_oldest =
-                opt::Optional<int>{(*m_idx_oldest + 1) % m_elements.size()};
-        } else
-            write(x);
-    }
-
-    void clear() {
-        std::fill(m_elements.begin(), m_elements.end(), opt::nullopt);
-        m_idx_oldest = opt::nullopt;
-    }
-
-  private:
     std::vector<opt::Optional<T>> m_elements;
     opt::Optional<int> m_idx_oldest;
 };
