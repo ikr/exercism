@@ -19,10 +19,7 @@ template <typename T> struct circular_buffer final {
 
         int i = *m_idx_oldest;
         m_idx_oldest = opt::nullopt;
-
-        if (std::all_of(m_elements.cbegin(), m_elements.cend(),
-                        [](auto el) { return !el; }))
-            return result;
+        if (is_empty()) return result;
 
         while (!m_elements[i]) i = (i + 1) % m_elements.size();
         m_idx_oldest = opt::Optional<int>{i};
@@ -53,6 +50,11 @@ template <typename T> struct circular_buffer final {
     bool is_full() const {
         return std::all_of(m_elements.cbegin(), m_elements.cend(),
                            [](auto el) { return el; });
+    }
+
+    bool is_empty() const {
+        return std::all_of(m_elements.cbegin(), m_elements.cend(),
+                           [](auto el) { return !el; });
     }
 
     void positive_capacity_write(const T &x) {
