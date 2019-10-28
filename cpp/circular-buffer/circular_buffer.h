@@ -13,7 +13,6 @@ template <typename T> struct circular_buffer final {
 
     T read() {
         if (!m_idx_oldest) throw std::domain_error("The buffer is empty");
-
         const T result = *m_elements[*m_idx_oldest];
         m_elements[*m_idx_oldest] = opt::nullopt;
 
