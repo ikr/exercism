@@ -1,5 +1,6 @@
 #include "protein_translation.h"
 
+#include <cassert>
 #include <map>
 #include <utility>
 

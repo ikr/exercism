@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <cassert>
 
 namespace protein_translation {
 std::vector<std::string> proteins(const std::string &rna);
