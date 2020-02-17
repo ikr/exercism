@@ -27,7 +27,7 @@ namespace protein_translation {
 std::vector<std::string> proteins(const std::string &rna) {
     std::vector<std::string> ans;
 
-    for (std::size_t i = 0; i + 2 < rna.size(); i += 3) {
+    for (auto i = 0U; i + 2 < rna.size(); i += 3) {
         const auto codon = rna.substr(i, 3);
 
         if (amino_acids_by_codons.count(codon))
