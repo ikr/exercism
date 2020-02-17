@@ -1,11 +1,10 @@
 #include "protein_translation.h"
 
-#include <cassert>
 #include <map>
 #include <utility>
 
 namespace {
-std::map<std::string, std::string> map_codons_to_amino_acids() {
+const auto amino_acids_by_codons = []() {
     std::map<std::string, std::string> ans;
 
     const std::vector<std::pair<std::vector<std::string>, std::string>> src{
@@ -21,9 +20,7 @@ std::map<std::string, std::string> map_codons_to_amino_acids() {
     }
 
     return ans;
-}
-
-const auto amino_acids_by_codons = map_codons_to_amino_acids();
+}();
 } // namespace
 
 namespace protein_translation {
