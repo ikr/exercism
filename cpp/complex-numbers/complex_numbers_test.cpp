@@ -56,8 +56,6 @@ TEST_CASE("Imaginary part of a number with real and imaginary part") {
     REQUIRE(Approx(2.0) == c.imag());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 // Helper function for comparing Complex numbers with approximate float values.
 static void require_approx_equal(const Complex& lhs, const Complex& rhs) {
     REQUIRE(Approx(lhs.real()).margin(eps) == rhs.real());
@@ -92,6 +90,8 @@ TEST_CASE("Add numbers with real and imaginary part") {
 
     require_approx_equal(Complex(4.0, 6.0), c1 + c2);
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("Subtract purely real numbers") {
     const Complex c1{1.0, 0.0};
