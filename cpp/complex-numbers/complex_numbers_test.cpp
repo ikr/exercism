@@ -91,8 +91,6 @@ TEST_CASE("Add numbers with real and imaginary part") {
     require_approx_equal(Complex(4.0, 6.0), c1 + c2);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE("Subtract purely real numbers") {
     const Complex c1{1.0, 0.0};
     const Complex c2{2.0, 0.0};
@@ -134,6 +132,8 @@ TEST_CASE("Multiply numbers with real and imaginary part") {
 
     require_approx_equal(Complex(-5.0, 10.0), c1 * c2);
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("Divide purely real numbers") {
     const Complex c1{1.0, 0.0};
