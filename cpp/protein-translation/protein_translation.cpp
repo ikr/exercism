@@ -4,7 +4,7 @@
 #include <utility>
 
 namespace {
-const auto amino_acids_by_codons = []() {
+const auto amino_acids_by_codons = [] {
     std::map<std::string, std::string> ans;
 
     const std::vector<std::pair<std::vector<std::string>, std::string>> src{
