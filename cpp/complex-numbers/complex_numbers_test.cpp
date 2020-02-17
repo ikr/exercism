@@ -22,7 +22,10 @@ TEST_CASE("Real part of a purely real number") {
     REQUIRE(Approx(1.0) == c.real());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
+// Define a margin to use for float comparisons. Catch does not compute a good
+// epsilon for float values near 0.
+static const double eps = 0.005;
+
 TEST_CASE("Real part of a purely imaginary number") {
     const Complex c{0.0, 1.0};
 
@@ -53,10 +56,7 @@ TEST_CASE("Imaginary part of a number with real and imaginary part") {
     REQUIRE(Approx(2.0) == c.imag());
 }
 
-
-// Define a margin to use for float comparisons. Catch does not compute a good
-// epsilon for float values near 0.
-static const double eps = 0.005;
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 // Helper function for comparing Complex numbers with approximate float values.
 static void require_approx_equal(const Complex& lhs, const Complex& rhs) {
