@@ -1,4 +1,5 @@
 #include "complex_numbers.h"
+#include <cmath>
 
 namespace complex_numbers {
 Complex::Complex(const double re, const double im) : m_re{re}, m_im{im} {}
@@ -24,5 +25,5 @@ Complex Complex::operator/(const Complex &rhs) const {
     return {(a * c + b * d) / denom, (b * c - a * d) / denom};
 }
 
-bool Complex::abs() const { return 0; }
+double Complex::abs() const { return std::sqrt(m_re * m_re + m_im * m_im); }
 } // namespace complex_numbers

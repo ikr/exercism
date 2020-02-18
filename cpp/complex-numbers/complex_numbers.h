@@ -10,7 +10,7 @@ struct Complex final {
     Complex operator+(const Complex &rhs) const;
     Complex operator-(const Complex &rhs) const;
     Complex operator/(const Complex &rhs) const;
-    bool abs() const;
+    double abs() const;
 
   private:
     double m_re;
