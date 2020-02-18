@@ -9,6 +9,7 @@ struct Complex final {
     Complex operator*(const Complex &rhs) const;
     Complex operator+(const Complex &rhs) const;
     Complex operator-(const Complex &rhs) const;
+    Complex operator/(const Complex &rhs) const;
 
   private:
     double m_re;

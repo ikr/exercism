@@ -17,4 +17,15 @@ Complex Complex::operator+(const Complex &rhs) const {
 Complex Complex::operator-(const Complex &rhs) const {
     return {m_re - rhs.m_re, m_im - rhs.m_im};
 }
+
+Complex Complex::operator/(const Complex &rhs) const {
+    const auto a = m_re;
+    const auto b = m_im;
+    const auto c = rhs.m_re;
+    const auto d = rhs.m_im;
+
+    const auto denom = c * c + d * d;
+
+    return {(a * c + b * d) / denom, (b * c - a * d) / denom};
+}
 } // namespace complex_numbers

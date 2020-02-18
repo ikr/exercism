@@ -133,8 +133,6 @@ TEST_CASE("Multiply numbers with real and imaginary part") {
     require_approx_equal(Complex(-5.0, 10.0), c1 * c2);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE("Divide purely real numbers") {
     const Complex c1{1.0, 0.0};
     const Complex c2{2.0, 0.0};
@@ -155,6 +153,8 @@ TEST_CASE("Divide numbers with real and imaginary part") {
 
     require_approx_equal(Complex(0.44, 0.08), c1 / c2);
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("Absolute value of a positive purely real number") {
     const Complex c{5.0, 0.0};
