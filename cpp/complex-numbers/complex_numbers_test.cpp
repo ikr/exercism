@@ -206,8 +206,6 @@ TEST_CASE("Conjugate a number with real and imaginary part") {
     require_approx_equal(Complex(1.0, -1.0), c.conj());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE("Eulers identity") {
     const Complex c{0.0, M_PI};
 
@@ -232,5 +230,3 @@ TEST_CASE("Exponential of a number with real and imaginary part") {
 
     require_approx_equal(Complex(-2.0, 0.0), c.exp());
 }
-
-#endif

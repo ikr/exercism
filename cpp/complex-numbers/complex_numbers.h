@@ -12,6 +12,7 @@ struct Complex final {
     Complex operator/(const Complex &rhs) const;
     double abs() const;
     Complex conj() const;
+    Complex exp() const;
 
   private:
     double m_re;

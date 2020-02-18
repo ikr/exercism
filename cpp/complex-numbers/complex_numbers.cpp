@@ -27,4 +27,9 @@ Complex Complex::operator/(const Complex &rhs) const {
 
 double Complex::abs() const { return std::sqrt(m_re * m_re + m_im * m_im); }
 Complex Complex::conj() const { return {m_re, -m_im}; }
+
+Complex Complex::exp() const {
+    return Complex{std::exp(m_re), 0.0} *
+           Complex{std::cos(m_im), std::sin(m_im)};
+}
 } // namespace complex_numbers
