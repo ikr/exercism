@@ -188,8 +188,6 @@ TEST_CASE("Absolute value of a number with real and imaginary part") {
     REQUIRE(Approx(5.0) == c.abs());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE("Conjugate a purely real number") {
     const Complex c{5.0, 0.0};
 
@@ -207,6 +205,8 @@ TEST_CASE("Conjugate a number with real and imaginary part") {
 
     require_approx_equal(Complex(1.0, -1.0), c.conj());
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("Eulers identity") {
     const Complex c{0.0, M_PI};
