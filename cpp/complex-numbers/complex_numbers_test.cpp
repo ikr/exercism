@@ -154,8 +154,6 @@ TEST_CASE("Divide numbers with real and imaginary part") {
     require_approx_equal(Complex(0.44, 0.08), c1 / c2);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
-
 TEST_CASE("Absolute value of a positive purely real number") {
     const Complex c{5.0, 0.0};
 
@@ -189,6 +187,8 @@ TEST_CASE("Absolute value of a number with real and imaginary part") {
 
     REQUIRE(Approx(5.0) == c.abs());
 }
+
+#if defined(EXERCISM_RUN_ALL_TESTS)
 
 TEST_CASE("Conjugate a purely real number") {
     const Complex c{5.0, 0.0};
