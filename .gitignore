@@ -6,3 +6,11 @@ CMakeFiles
 Makefile
 CMakeCache.txt
 cmake_install.cmake
+target
+.bsp
+.metals
+.exercism
+.clj-kondo
+.lsp
+.lein-failures
+.lein-repl-history
